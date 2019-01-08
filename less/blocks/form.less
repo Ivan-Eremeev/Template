@@ -1,0 +1,156 @@
+.form {
+	&_row {
+		input {
+			width: 100%;
+			margin-bottom: 10px;
+			padding: 10px;
+			border: 1px solid grey;
+			border-radius: 3px;
+		}
+		textarea {
+			resize: none;
+			width: 100%;
+			padding: 10px;
+			margin-bottom: 6px;
+			border: 1px solid grey;
+			border-radius: 3px;
+		}
+	}
+	&_select {
+		margin-bottom: 10px;
+		position: relative;
+		&:after {
+			content: '';
+			display: block;
+			@include triangle(down,8px,8px,grey);
+			position: absolute;
+			top: 50%;
+			right: 10px;
+			transform: translate(0,-50%);
+		}
+		select {
+			width: 100%;
+			padding: 10px;
+			background-color: #fff;
+			border: 1px solid grey;
+			border-radius: 3px;
+			color: #666;
+			appearance: none;
+			&::-ms-expand {
+			  display: none;
+			}
+		}
+	}
+	&_checkbox {
+		margin-bottom: 5px;
+		input {
+			display: none;
+			&:checked {
+				+ label span {
+					&:after {
+						max-width: 20px;
+						transform: rotate(46deg);
+					}
+					&:before {
+						max-width: 20px;
+						transform: rotate(-56deg);
+					}
+				}
+			}
+		}
+		label {
+			display: inline-block;
+			padding-left: 30px;
+			position: relative;
+			cursor: pointer;
+			user-select: none;
+			span {
+				display: block;
+				width: 20px;
+				height: 20px;
+				border: 1px solid grey;
+				border-radius: 3px;
+				position: absolute;
+				top: 50%;
+				left: 0;
+				transform: translate(0,-50%);
+				&:after {
+					content: '';
+					display: block;
+					width: 9px;
+					max-width: 0;
+					height: 3px;
+					background-color: green;
+					position: absolute;
+					top: 12px;
+					left: 0px;
+					transform: rotate(180deg);
+					transition: .3s;
+				}
+				&:before {
+					content: '';
+					display: block;
+					width: 18px;
+					height: 3px;
+					max-width: 0;
+					background-color: green;
+					position: absolute;
+					top: 9px;
+					left: 3px;
+					transform: rotate(-180deg);
+					transition: .3s;
+				}
+			}
+		}
+	}
+	&_radio {
+		margin-bottom: 5px;
+		input {
+			display: none;
+			&:checked {
+				+ label span {
+					&:after {
+						transform: scale(1);
+					}
+				}
+			}
+		}
+		label {
+			display: inline-block;
+			padding-left: 30px;
+			cursor: pointer;
+			position: relative;
+			span {
+				width: 20px;
+				height: 20px;
+				border: 1px solid grey;
+				border-radius: 50%;
+				position: absolute;
+				top: 50%;
+				left: 0;
+				transform: translate(0,-50%);
+				&:after {
+					content: '';
+					display: block;
+					width: 12px;
+					height: 12px;
+					background-color: green;
+					border-radius: 50%;
+					position: absolute;
+					top: 3px;
+					left: 3px;
+					transition: .3s;
+					transform: scale(0);
+				}
+			}
+		}
+	}
+	&_btn {
+		button {
+			cursor: pointer;
+		}
+	}
+}
+input::placeholder, textarea::placeholder {
+	color: #666;
+}

@@ -1,0 +1,71 @@
+.modal {
+	width: 100%;
+	max-width: 600px;
+	padding: 20px;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%,-50%) scale(0, 0);
+	z-index: 100;
+	transition: .3s;
+	opacity: 0;
+	&.open {
+		transform: translate(-50%,-50%) scale(1, 1);
+		opacity: 1;
+	}
+	&_content {
+		position: relative;
+		padding: 30px;
+		background-color: #666;
+		box-shadow: 5px 5px 11px 0px rgba(0, 0, 0, 0.3);
+		border-radius: 5px;
+		color: #fff;
+	}
+	&_close {
+		width: 30px;
+		height: 30px;
+		background-color: #fff;
+		border-radius: 50%;
+		position: absolute;
+		top: -20px;
+		right: -20px;
+		cursor: pointer;
+		user-select: none;
+		box-shadow: 5px 5px 11px 0px rgba(0, 0, 0, 0.3);
+		&:after {
+			content: '';
+			display: block;
+			width: 15px;
+			height: 2px;
+			background-color: #666;
+			position: absolute;
+			top: 14px;
+			left: 8px;
+			transform: rotate(-45deg);
+		}
+		&:before {
+			content: '';
+			display: block;
+			width: 15px;
+			height: 2px;
+			background-color: #666;
+			position: absolute;
+			top: 14px;
+			left: 8px;
+			transform: rotate(45deg);
+		}
+	}
+	&_over {
+		display: none;
+		position: fixed;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		background-color: rgba(30,30,30,.5);
+		z-index: 99;
+		&.open {
+			display: block;
+		}
+	}
+}

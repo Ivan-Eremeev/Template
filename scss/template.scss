@@ -1,0 +1,36 @@
+a {
+	transition: .3s;
+}
+
+.header {
+	&_container {
+		padding: 20px 0;
+		background-color: #666;
+		transition: .3s;
+	}
+}
+
+.content {
+	padding: 20px 0;
+}
+
+.wrapper {
+	@include wrapper();
+}
+.row {
+	@include row();
+}
+.col {
+	@include col(4);
+	@include col-sm(6);
+	@include col-xs(12);
+	padding-bottom: $gutter;
+}
+.block {
+	height: 10em;
+	background-color: grey;
+}
+
+.licence {
+	background-color: #666;
+}

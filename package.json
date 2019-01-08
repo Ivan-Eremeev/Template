@@ -1,0 +1,21 @@
+{
+  "name": "Gulp",
+  "version": "1.0.0",
+  "description": "Gulp build",
+  "devDependencies": {
+    "browser-sync": "*",
+    "gulp": "*",
+    "gulp-autoprefixer": "*",
+    "gulp-clean-css": "*",
+    "gulp-concat": "*",
+    "gulp-concat-css": "*",
+    "gulp-minify": "*",
+    "gulp-pug": "*",
+    "gulp-sass": "*",
+    "gulp-less": "*",
+    "gulp-rigger": "*",
+    "gulp-uglify": "*",
+    "gulp-rename": "*"
+  },
+  "dependencies": {}
+}

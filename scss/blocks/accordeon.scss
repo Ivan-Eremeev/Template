@@ -1,0 +1,19 @@
+.accordeon {
+	&_item {
+
+	}
+	&_trigger {
+		display: inline-block;
+		padding: 5px 10px;
+		background-color: green;
+		cursor: pointer;
+		user-select: none;
+		transition: .3s;
+		&.active {
+			background-color: red;
+		}
+	}
+	&_content {
+		display: none;
+	}
+}
