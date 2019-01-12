@@ -143,6 +143,23 @@ $(document).ready(function () {
 	// Autosize Изменение высоты текстового поля при добавлении контента
 	// autosize($('textarea'));
 
+	// Текст печатная машинка
+	// function textPrint() {
+	// 	var textPrint = $('#text-print'),
+	// 		a = textPrint.text(),
+	// 		j = 0,
+	// 		c = a.length,
+	// 		time = 50;
+	// 	textPrint.text('');
+	// 	setInterval(function () {
+	// 		if (j<c) {
+	// 			textPrint.text(textPrint.text() + a[j]);
+	// 			j++;
+	// 		}
+	// 	},time);
+	// };
+	// textPrint();
+
 	// Tooltipster Всплывающая подсказка
 	var tooltip = $('.tooltip').tooltipster({
 		theme : 'tooltipster-noir', // Тема
