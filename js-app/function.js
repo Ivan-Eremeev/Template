@@ -160,6 +160,24 @@ $(document).ready(function () {
 	// };
 	// textPrint();
 
+	// Анимация увеличения числа
+	// var blockStatus = true;
+	// function countNumber () {
+	// 	var target_block = $(".count-number");
+	// 	var scrollEvent = ($(window).scrollTop() > (target_block.position().top - 400));
+	// 	if(scrollEvent && blockStatus) {		
+	// 		blockStatus = false;
+	// 		$({numberValue: 0}).animate({numberValue: 2580}, {
+	// 			duration: 5000,
+	// 			easing: "swing",	
+	// 			step: function(val) {
+	// 				$(".count-number").html(Math.ceil(val));
+	// 			}	
+	// 		});
+	// 	}
+	// };
+	// countNumber();
+
 	// Tooltipster Всплывающая подсказка
 	var tooltip = $('.tooltip').tooltipster({
 		theme : 'tooltipster-noir', // Тема
@@ -189,6 +207,7 @@ $(document).ready(function () {
 	// 	fontResize(); // Резиновый сайт
 	// 	screenHeight(); // Блок с высотой окна браузера
 	// 	tooltipDisable(); // Отключение всплывающей подсказки
+	// 	countNumber(); // Анимация увеличения числа
 	// });
 	
 });
