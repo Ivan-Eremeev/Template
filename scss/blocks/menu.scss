@@ -162,7 +162,7 @@
 			}
 		}
 		&_nav {
-			width: 70%;
+			width: 80%;
 			background-color: #666;
 			z-index: 99;
 			overflow: hidden;
@@ -227,6 +227,11 @@
 		&_over {
 			display: none;
 			z-index: 98;
+		}
+	}
+	@media (max-width: $break_xs) {
+		&_nav {
+			width: 100%;
 		}
 	}
 }

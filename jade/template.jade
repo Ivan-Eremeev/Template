@@ -62,7 +62,7 @@ block content
 				// /text
 
 				// tabs
-				.tabs
+				.tabs.wow.slideInUp(data-wow-duration="2s")
 					ul.tabs_trigger
 						li.active tab 1
 						li tab 2
@@ -77,7 +77,7 @@ block content
 				// /tabs
 
 				// accordeon
-				.accordeon
+				.accordeon.wow.slideInLeft(data-wow-duration="2s")
 					.accordeon_item
 						.accordeon_trigger triger 1
 						.accordeon_content
@@ -93,10 +93,10 @@ block content
 				// /accordeon
 
 				// form
-				form.form(action="#")
+				form.form(action="send.php" method="POST")
 					.form_row
 						input(type="text" name="name" placeholder="Введите имя")
-						input(type="tel" name="tel" placeholder="Введите номер телефона")
+						input(type="tel" name="phone" placeholder="Введите номер телефона")
 						input(type="email" name="email" placeholder="Введите email")
 						.form_select
 							select(name="select")
@@ -159,4 +159,5 @@ block js
 	//- script(src="js/autosize.min.js")
 	script(src="js/tooltipster.bundle.min.js")
 	//- script(src="js/jquery.mmenu.all.js")
+	script(src="js/wow.min.js")
 	script(src="js/script.js")

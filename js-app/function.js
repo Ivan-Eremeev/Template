@@ -1,8 +1,9 @@
 $(document).ready(function () {
 
-	// @prepros-append libs-settings/slick_settings.js
-	// @prepros-append libs-settings/fancybox_settings.js
-	// @prepros-append libs-settings/mmenu_settings.js
+	// libs-settings/fancybox_settings.js
+	// libs-settings/mmenu_settings.js
+	// libs-settings/slick_settings.js
+	// @prepros-prepend libs-settings/wow_js_settings.js
 
 	// Отмена перехода по ссылкам
 	$('a[href="#"]').click(function(e) {
