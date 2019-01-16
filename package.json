@@ -4,18 +4,19 @@
   "description": "Gulp build",
   "devDependencies": {
     "browser-sync": "*",
-    "gulp": "*",
     "gulp-autoprefixer": "*",
     "gulp-clean-css": "*",
     "gulp-concat": "*",
     "gulp-concat-css": "*",
+    "gulp-less": "*",
     "gulp-minify": "*",
     "gulp-pug": "*",
-    "gulp-sass": "*",
-    "gulp-less": "*",
+    "gulp-rename": "*",
     "gulp-rigger": "*",
-    "gulp-uglify": "*",
-    "gulp-rename": "*"
+    "gulp-sass": "*",
+    "gulp-uglify": "*"
   },
-  "dependencies": {}
+  "dependencies": {
+    "gulp": "^3.9.1"
+  }
 }

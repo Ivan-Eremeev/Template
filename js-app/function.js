@@ -5,6 +5,13 @@ $(document).ready(function () {
 	// libs-settings/slick_settings.js
 	// @prepros-prepend libs-settings/wow_js_settings.js
 
+	// Брэйкпоинты js
+	var mediaXs = 576,
+			mediaSm = 768,
+			mediaMd = 1024,
+			mediaLg = 1200,
+			mediaXl = 1400;
+
 	// Отмена перехода по ссылкам
 	$('a[href="#"]').click(function(e) {
 		e.preventDefault();
@@ -60,9 +67,9 @@ $(document).ready(function () {
 	// Изменяет размер шрифта у тэга html взависимости от размера экрана (для резиновых страниц)(размеры должны быть в rem)
 	// function fontResize() {
 	// 	var windowWidth = $(window).width();
-	// 		if (windowWidth >= 720) {
+	// 		if (windowWidth >= mediaSm) {
 	// 			var fontSize = windowWidth/19.05;
-	// 		} else if (windowWidth < 720) {
+	// 		} else if (windowWidth < mediaSm) {
 	// 			// Без резины на мобилке
 	// 			var fontSize = 60;
 	// 			// С резиной на мобилке
