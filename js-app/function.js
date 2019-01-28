@@ -4,6 +4,7 @@ $(document).ready(function () {
 	// libs-settings/mmenu_settings.js
 	// libs-settings/slick_settings.js
 	// @prepros-prepend libs-settings/wow_js_settings.js
+	// @prepros-prepend libs-settings/fullpage_settings.js
 
 	// Брэйкпоинты js
 	var mediaXs = 576,
