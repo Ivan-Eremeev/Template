@@ -31,6 +31,7 @@ var slider = $('.slider-nav').slick({
   infinite: false, // Зацикленное пролистывание
   vertical: false, // Вертикальный слайдер
   rtl: false, // Слайды листаются справа налево
+  centerMode: true, // Включить center mode, чтоб увидеть часть крайних слайдов
   centerPadding: '0px', // Отступы слева и справа чтоб увидеть часть крайних слайдов
   adaptiveHeight: true, // Подгоняет высоту слайдера под элемент слайда
   variableWidth: false, // Подгоняет ширину слайдов под размер элемента,
