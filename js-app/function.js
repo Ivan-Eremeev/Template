@@ -220,39 +220,63 @@ $(document).ready(function () {
 	// });
 
 	// Делает активным пункт меню при скролле до блока
-	function menuItemActive() {
-		var lastId,
-    topMenu = $("#menu_list"),
-    topMenuHeight = topMenu.outerHeight(),
-    menuItems = topMenu.find("a"),
-    scrollItems = menuItems.map(function(){
-      var item = $($(this).attr("href"));
-      if (item.length) { return item; }
-    });
-		menuItems.click(function(e){
-		  var href = $(this).attr("href"),
-		      offsetTop = href === "#" ? 0 : $(href).offset().top-topMenuHeight+1;
-		  $('html, body').stop().animate({ 
-		      scrollTop: offsetTop
-		  }, 300);
-		  e.preventDefault();
-		});
-		$(window).scroll(function(){
-		  var fromTop = $(this).scrollTop()+topMenuHeight;
-		  var cur = scrollItems.map(function(){
-		    if ($(this).offset().top < fromTop)
-		      return this;
-		  });
-		  cur = cur[cur.length-1];
-		  var id = cur && cur.length ? cur[0].id : "";
-		  if (lastId !== id) {
-		      lastId = id;
-		      menuItems
-		        .parent().removeClass("active")
-		        .end().filter("[href='#"+id+"']").parent().addClass("active");
-		  }                   
-		});
-	};
-	menuItemActive();
+	// function menuItemActive() {
+	// 	var lastId,
+ //    topMenu = $("#menu_list"),
+ //    topMenuHeight = topMenu.outerHeight(),
+ //    menuItems = topMenu.find("a"),
+ //    scrollItems = menuItems.map(function(){
+ //      var item = $($(this).attr("href"));
+ //      if (item.length) { return item; }
+ //    });
+	// 	menuItems.click(function(e){
+	// 	  var href = $(this).attr("href"),
+	// 	      offsetTop = href === "#" ? 0 : $(href).offset().top-topMenuHeight+1;
+	// 	  $('html, body').stop().animate({ 
+	// 	      scrollTop: offsetTop
+	// 	  }, 300);
+	// 	  e.preventDefault();
+	// 	});
+	// 	$(window).scroll(function(){
+	// 	  var fromTop = $(this).scrollTop()+topMenuHeight;
+	// 	  var cur = scrollItems.map(function(){
+	// 	    if ($(this).offset().top < fromTop)
+	// 	      return this;
+	// 	  });
+	// 	  cur = cur[cur.length-1];
+	// 	  var id = cur && cur.length ? cur[0].id : "";
+	// 	  if (lastId !== id) {
+	// 	      lastId = id;
+	// 	      menuItems
+	// 	        .parent().removeClass("active")
+	// 	        .end().filter("[href='#"+id+"']").parent().addClass("active");
+	// 	  }                   
+	// 	});
+	// };
+	// menuItemActive();
+
+	// Изменение textarea при получении фокуса
+	// $('textarea')
+	// .focus(function() { 
+	// 	$(this).addClass('class_name');
+	// })
+	// .blur(function() { 
+	// 	if ($(this)[0].value == '') { 
+	// 		$(this).removeClass('class_name');
+	// 	} 
+	// });
+
+	// Изменение поля ввода при клике
+	// $('.block_input').click(function() {
+	// 	var div = $(this);
+	// 	div.addClass('active'),
+	// 	input = div.find('input');
+	// 	$(document).mouseup(function (e){
+	// 		if (!div.is(e.target)
+	// 		    && div.has(e.target).length === 0 && input.val() == '') {
+	// 			div.removeClass('active');
+	// 		}
+	// 	});
+	// });
 	
 });
