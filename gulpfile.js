@@ -1,5 +1,5 @@
-const preprocessor        = 'scss', // Препроцессор для стилей
-      gulpVersion         = '4'; // Версия галпа
+const preprocessor        = 'scss', // Препроцессор для стилей (scss, less)
+      gulpVersion         = '4'; // Версия галпа (3, 4)
 
 const gulp                = require('gulp'),
       sass                = require('gulp-sass'),

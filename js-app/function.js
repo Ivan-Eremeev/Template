@@ -278,5 +278,22 @@ $(document).ready(function () {
 	// 		}
 	// 	});
 	// });
+
+	// Управление видео
+	// var playing = false;
+	// $('.video').click(function() {
+	// 	var video = $(this).find('video'),
+	// 			img = $(this).find('img');
+	// 	img.css({
+	// 		display: 'none'});
+	// 	if (playing == false) {
+	// 		video.trigger('play');
+	// 		playing = true;
+	// 	}
+	// 	else {
+	// 		video.trigger('pause');
+	// 		playing = false;
+	// 	}
+	// });
 	
 });
