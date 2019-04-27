@@ -1,17 +1,27 @@
+/*!
+ *
+ * Ivan Eremeev - 2019
+ * Skype: ivan.eremeev_1
+ * Telegram: https://t.me/IvanMessage
+ * Email: ivan.frontcoder@gmail.com
+ *
+ */
+
 $(document).ready(function () {
 
 	// libs-settings/fancybox_settings.js
 	// libs-settings/mmenu_settings.js
 	// libs-settings/slick_settings.js
 	// @prepros-prepend libs-settings/wow_js_settings.js
-	// @prepros-prepend libs-settings/fullpage_settings.js
+	// libs-settings/fullpage_settings.js
 
 	// Брэйкпоинты js
-	var mediaXs = 576,
-			mediaSm = 768,
-			mediaMd = 1024,
+	var	mediaXl = 1400,
 			mediaLg = 1200,
-			mediaXl = 1400;
+			mediaMd = 1024,
+			mediaSm = 768,
+			mediaXs = 576;
+			
 
 	// Отмена перехода по ссылкам
 	$('a[href="#"]').click(function(e) {
@@ -99,13 +109,13 @@ $(document).ready(function () {
 				allContent = trigger.parent().parent().find('.accordeon_content'),
 				time = 300;
 		if (!content.hasClass('open')) {
-			allContent.stop().slideUp(time).removeClass('open');
-			content.stop().slideDown(time).addClass('open');
+			allContent.stop().removeClass('open');
+			content.stop().addClass('open');
 			allTrigger.removeClass('active');
 			trigger.addClass('active');
 		}
 		else {
-			content.stop().slideUp(time).removeClass('open');
+			content.stop().removeClass('open');
 			trigger.removeClass('active');
 		}
 	});
@@ -211,14 +221,6 @@ $(document).ready(function () {
 
 	tooltipDisable();
 
-	// Слежение за изменением размера окна браузера
-	// $(window).resize(function() {
-	// 	fontResize(); // Резиновый сайт
-	// 	screenHeight(); // Блок с высотой окна браузера
-	// 	tooltipDisable(); // Отключение всплывающей подсказки
-	// 	countNumber(); // Анимация увеличения числа
-	// });
-
 	// Делает активным пункт меню при скролле до блока
 	// function menuItemActive() {
 	// 	var lastId,
@@ -295,5 +297,15 @@ $(document).ready(function () {
 	// 		playing = false;
 	// 	}
 	// });
+
+
+
+	// Слежение за изменением размера окна браузера
+	$(window).resize(function() {
+		// fontResize(); // Резиновый сайт
+		// screenHeight(); // Блок с высотой окна браузера
+		// tooltipDisable(); // Отключение всплывающей подсказки
+		// countNumber(); // Анимация увеличения числа
+	});
 	
 });
