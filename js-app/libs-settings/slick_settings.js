@@ -62,4 +62,15 @@ function sliderInit(slider,sliderFor) {
 };
 sliderInit($('.slider'),$('.slider-for'));
 
+// Инициализация слайдеров на десктопе и мобилке
+function sliderReinstall() {
+  if (window.matchMedia("(max-width: 769px)").matches) {
+    $('.slick-initialized').slick('unslick');
+  }
+  else {
+    $('.slick-initialized').slick('unslick');
+    sliderInit($('.slider'), $('.slider-for'));
+  }
+}
+
 // $('.your-slider').slick('unslick'); // Уничтожить слайдер

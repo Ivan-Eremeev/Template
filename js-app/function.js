@@ -30,18 +30,25 @@ $(document).ready(function () {
 
 	// Мобильное меню
 	$('.menu_btn').click(function () {
-		var menu = $(this).closest('#menu');
-		var over = $(this).siblings('.menu_over');
-		var btn = $(this);
+		var $this = $(this),
+				menu = $this.closest('#menu'),
+				over = menu.find('.menu_over'),
+				documentWidth = parseInt(document.documentElement.clientWidth),
+				windowsWidth = parseInt(window.innerWidth),
+				scrollbarWidth = windowsWidth - documentWidth,
+				html = $('html');
+		html.toggleClass('lock').css('padding-right',scrollbarWidth);
 		menu.toggleClass('open');
-		btn.toggleClass('is-active');
+		$this.toggleClass('is-active');
 		over.click(function() {
+			html.removeClass('lock').css('padding-right',0);
 			menu.removeClass('open');
-			btn.removeClass('is-active');
+			$this.removeClass('is-active');
 		});
 		menu.find('a').click(function() {
+			html.removeClass('lock').css('padding-right',0);
 			menu.removeClass('open');
-			btn.removeClass('is-active');
+			$this.removeClass('is-active');
 		});
 	});
 	
@@ -93,7 +100,7 @@ $(document).ready(function () {
 	$('.tabs_trigger').find('li').click(function() {
 		var trigger = $(this),
 				allTrigger = trigger.siblings();
-				content = trigger.parent().siblings('.tabs_content').find('div'),
+				content = trigger.parent().siblings('.tabs_content').find('.tabs_block'),
 				index = trigger.index();
 		allTrigger.removeClass('active');
 		trigger.addClass('active');
@@ -124,16 +131,23 @@ $(document).ready(function () {
 	$('.modal-trigger').on('click', function() {
 		var data = $(this).data('modal'),
 				modalOver = $('.modal_over'),
-				modal = $('#modal-' + data);
+				modal = $(data),
+				html = $('html'),
+				documentWidth = parseInt(document.documentElement.clientWidth),
+				windowsWidth = parseInt(window.innerWidth),
+				scrollbarWidth = windowsWidth - documentWidth;
 		modal.toggleClass('open')
 		.next('.modal_over').toggleClass('open');
+		html.toggleClass('lock').css('padding-right',scrollbarWidth);
 		$('.modal_close').on('click', function() {
-			modal.removeClass('open'),
+			modal.removeClass('open');
 			modalOver.removeClass('open');
+			html.removeClass('lock').css('padding-right',0);
 		});
 		modalOver.on('click', function() {
 			modal.removeClass('open');
 			modalOver.removeClass('open');
+			html.removeClass('lock').css('padding-right',0);
 		});
 	});
 
@@ -301,11 +315,18 @@ $(document).ready(function () {
 
 
 	// Слежение за изменением размера окна браузера
+	var heightResized = false;
 	$(window).resize(function() {
+		var windowWidth = $(window).width();
+		if (heightResized == windowWidth) {
+			return;
+		}
+		heightResized = windowWidth;
 		// fontResize(); // Резиновый сайт
 		// screenHeight(); // Блок с высотой окна браузера
 		// tooltipDisable(); // Отключение всплывающей подсказки
 		// countNumber(); // Анимация увеличения числа
+		// sliderReinstall() //Реинициализация слайдеров
 	});
 	
 });

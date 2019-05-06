@@ -1,6 +1,50 @@
+// settings
+html {
+	&.lock {
+		overflow: hidden;
+	}
+}
 a {
 	transition: .3s;
+	text-decoration: none;
 }
+button {
+	font-family: Arial;
+	outline: none;
+}
+input {
+	font-family: Arial;
+	outline: none;
+}
+.row {
+	@include row();
+}
+.wrapper {
+	@include wrapper();
+	padding-left: 130px;
+}
+body {
+	background-color: #fff;
+	font-family: Arial;
+	font-size: 16px;
+}
+h1 {
+	font-size: 45px;
+}
+h2 {
+	font-size: 40px;
+}
+.mobile-hide {
+	@media (max-width: $break_sm) {
+		display: none;
+	}
+}
+.mobile-visible {
+	@media (min-width: $break_sm + 1) {
+		display: none;
+	}
+}
+// /settings
 
 .header {
 	&_container {
