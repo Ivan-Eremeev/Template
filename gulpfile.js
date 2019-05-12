@@ -1,5 +1,5 @@
 const preprocessor        = 'scss', // Препроцессор для стилей (scss, less)
-      gulpVersion         = '4'; // Версия галпа (3, 4)
+      gulpVersion         = '3'; // Версия галпа (3, 4)
 
 const gulp                = require('gulp'),
       sass                = require('gulp-sass'),
@@ -29,14 +29,10 @@ if (preprocessor == 'scss') {
     return gulp.src('scss/style.scss')
     .pipe(sass().on('error', sass.logError))
     .pipe(autoprefixer({
-        browsers:['ie >= 9', 'last 3 version'],
+        browsers:['last 5 version'],
         cascade: false
     }))
-    .pipe(cleanCSS({
-        level : 2
-    }))
     .pipe(gulp.dest('dist/css'))
-    .pipe(browserSync.reload({stream: true}));
   });
 }
 
@@ -45,21 +41,35 @@ else if (preprocessor == 'less') {
     return gulp.src('less/style.less')
     .pipe(less())
     .pipe(autoprefixer({
-        browsers:['ie >= 9', 'last 3 version'],
+        browsers:['last 5 version'],
         cascade: false
     }))
-    .pipe(cleanCSS({
-        level : 2
-    }))
     .pipe(gulp.dest('dist/css'))
-    .pipe(browserSync.reload({stream: true}));
   });
 }
+
+gulp.task('css', function () {
+  return gulp.src('dist/css/style.css')
+  .pipe(cleanCSS({
+    level : 2
+  }))
+  .pipe(rename({
+    suffix: '.min'
+  }))
+  .pipe(gulp.dest('dist/css'))
+  .pipe(browserSync.reload({stream: true}));
+});
 
 gulp.task('js', function () {
     return gulp.src('js-app/*.js')
     .pipe(rigger())
-    .pipe(uglify())
+    .pipe(uglify({
+      compress: false,
+      mangle: false,
+      output: {
+        
+      }
+    }))
     .pipe(rename({
         basename: 'script',
         extname: '.js'
@@ -82,16 +92,18 @@ if (gulpVersion == '3') {
     gulp.watch('jade/**/*.jade', ['jade']);
     gulp.watch('js-app/**/*.js', ['js']);
     gulp.watch('scss/**/*.scss', ['style']);
+    gulp.watch('dist/css/style.css', ['css']);
   });
 
-  gulp.task('default', ['browser-sync', 'jade', 'js', 'style', 'watch']);
+  gulp.task('default', ['browser-sync', 'jade', 'js', 'style', 'css', 'watch']);
 }
 else if (gulpVersion == '4') {
   gulp.task('watch', function () {
     gulp.watch('jade/**/*.jade', gulp.parallel('jade'));
     gulp.watch('js-app/**/*.js', gulp.parallel('js'));
     gulp.watch('scss/**/*.scss', gulp.parallel('style'));
+    gulp.watch('dist/css/style.css', gulp.parallel('css'));
   });
 
-  gulp.task('default', gulp.parallel('browser-sync', 'jade', 'js', 'style', 'watch'));
+  gulp.task('default', gulp.parallel('browser-sync', 'jade', 'js', 'style', 'css', 'watch'));
 }

@@ -2,25 +2,27 @@
  *
  * Ivan Eremeev - 2019
  * Skype: ivan.eremeev_1
- * Telegram: https://t.me/IvanMessage
+ * Telegram: IvanMessage
  * Email: ivan.frontcoder@gmail.com
  *
  */
 
-$(document).ready(function () {
+// Подключение файлов
+// При использовании gulp поменять "@prepros-prepend" на "//="
+// libs-settings/fancybox_settings.js
+// libs-settings/mmenu_settings.js
+// libs-settings/slick_settings.js
+// @prepros-prepend libs-settings/wow_js_settings.js
+// libs-settings/fullpage_settings.js
 
-	// libs-settings/fancybox_settings.js
-	// libs-settings/mmenu_settings.js
-	// libs-settings/slick_settings.js
-	// @prepros-prepend libs-settings/wow_js_settings.js
-	// libs-settings/fullpage_settings.js
+$(document).ready(function () {
 
 	// Брэйкпоинты js
 	var	mediaXl = 1400,
 			mediaLg = 1200,
-			mediaMd = 1024,
-			mediaSm = 768,
-			mediaXs = 576;
+			mediaMd = 1025,
+			mediaSm = 769,
+			mediaXs = 500;
 			
 
 	// Отмена перехода по ссылкам
@@ -93,7 +95,7 @@ $(document).ready(function () {
 	// 			// С резиной на мобилке
 	// 			var fontSize = windowWidth/4.8;
 	// 	}
-	// 	$('html').css('fontSize', fontSize + '%');
+	// 	$('body').css('fontSize', fontSize + '%');
 	// }
 
 	// Табы
@@ -225,14 +227,13 @@ $(document).ready(function () {
 
 	// Отключение подсказки на мобильных
 	function tooltipDisable() {
-		if (window.matchMedia('(max-width: 720px)').matches) {
+		if ($(window).width() <= mediaSm) {
 			tooltip.tooltipster('disable');
 		}
-		else if (window.matchMedia('(min-width: 721px)').matches) {
+		else if ($(window).width() > mediaSm) {
 			tooltip.tooltipster('enable');
 		}
 	};
-
 	tooltipDisable();
 
 	// Делает активным пункт меню при скролле до блока
@@ -312,8 +313,6 @@ $(document).ready(function () {
 	// 	}
 	// });
 
-
-
 	// Слежение за изменением размера окна браузера
 	var heightResized = false;
 	$(window).resize(function() {
@@ -324,7 +323,7 @@ $(document).ready(function () {
 		heightResized = windowWidth;
 		// fontResize(); // Резиновый сайт
 		// screenHeight(); // Блок с высотой окна браузера
-		// tooltipDisable(); // Отключение всплывающей подсказки
+		tooltipDisable(); // Отключение всплывающей подсказки
 		// countNumber(); // Анимация увеличения числа
 		// sliderReinstall() //Реинициализация слайдеров
 	});
