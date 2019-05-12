@@ -1,14 +1,16 @@
-.tabs {
-	&_trigger {
-		li {
+#tabs {
+	&_triggers {
+		> * {
 			cursor: pointer;
 			user-select: none;
 			transition: .3s;
 		}
 	}
-	&_block {
-		&.hide {
-			display: none;
+	&_content {
+		> * {
+			&.hide {
+				display: none;
+			}
 		}
 	}
 }

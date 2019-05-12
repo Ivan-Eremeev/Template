@@ -63,13 +63,13 @@ gulp.task('css', function () {
 gulp.task('js', function () {
     return gulp.src('js-app/*.js')
     .pipe(rigger())
-    .pipe(uglify({
-      compress: false,
-      mangle: false,
-      output: {
+    // .pipe(uglify({
+    //   compress: false,
+    //   mangle: false,
+    //   output: {
         
-      }
-    }))
+    //   }
+    // }))
     .pipe(rename({
         basename: 'script',
         extname: '.js'
