@@ -14,6 +14,7 @@
 // libs-settings/slick_settings.js
 // @prepros-append libs-settings/wow_js_settings.js
 // libs-settings/fullpage_settings.js
+// libs-settings/tinyscrollbar-settings.js
 
 $(document).ready(function () {
 
@@ -58,82 +59,13 @@ $(document).ready(function () {
 	// autosize($('textarea'));
 	
 	// Модальное окно
-	$('.modal-trigger').on('click', function() {
-		var data = $(this).data('modal'),
-				modalOver = $('.modal_over'),
-				modal = $(data),
-				html = $('html'),
-				documentWidth = parseInt(document.documentElement.clientWidth),
-				windowsWidth = parseInt(window.innerWidth),
-				scrollbarWidth = windowsWidth - documentWidth;
-		modal.toggleClass('open')
-		.next('.modal_over').toggleClass('open');
-		html.toggleClass('lock').css('padding-right',scrollbarWidth);
-		$('.modal_close').on('click', function() {
-			modal.removeClass('open');
-			modalOver.removeClass('open');
-			html.removeClass('lock').css('padding-right',0);
-		});
-		modalOver.on('click', function() {
-			modal.removeClass('open');
-			modalOver.removeClass('open');
-			html.removeClass('lock').css('padding-right',0);
-		});
-	});
-
-	// Стилизация полосы прокрутки
-	$('#scrollbar1').tinyscrollbar({
-		axis: "y", // Направление оси
-		// trackSize: 100, // Высота дорожки
-		thumbSize: 50, // Высота тамба
-		// thumbSizeMin: 100, // Минимальная высота тамба
-		wheel: true, // Отключить прокрутку
-		wheelSpeed: 10, // Прокручивать пикселей
-	});
-
-	$('#scrollbar2').tinyscrollbar({
-		axis: "y", // Направление оси
-		// trackSize: 100, // Высота дорожки
-		thumbSize: 50, // Высота тамба
-		// thumbSizeMin: 100, // Минимальная высота тамба
-		wheel: true, // Отключить прокрутку
-		wheelSpeed: 10, // Прокручивать пикселей
-	});
+	modal();
 
 	// Текст печатная машинка
-	// function textPrint() {
-	// 	var textPrint = $('#text-print'),
-	// 		a = textPrint.text(),
-	// 		j = 0,
-	// 		c = a.length,
-	// 		time = 50;
-	// 	textPrint.text('');
-	// 	setInterval(function () {
-	// 		if (j<c) {
-	// 			textPrint.text(textPrint.text() + a[j]);
-	// 			j++;
-	// 		}
-	// 	},time);
-	// };
-	// textPrint();
+	// textPrint($('#text-print'));
 
-	// Анимация увеличения числа
-	// var blockStatus = true;
-	// function countNumber () {
-	// 	var target_block = $(".count-number");
-	// 	var scrollEvent = ($(window).scrollTop() > (target_block.position().top - 400));
-	// 	if(scrollEvent && blockStatus) {		
-	// 		blockStatus = false;
-	// 		$({numberValue: 0}).animate({numberValue: 2580}, {
-	// 			duration: 5000,
-	// 			easing: "swing",	
-	// 			step: function(val) {
-	// 				$(".count-number").html(Math.ceil(val));
-	// 			}	
-	// 		});
-	// 	}
-	// };
-	// countNumber();
+	// Анимация увеличения значения числа
+	countNumber($(".count-number"));
 
 	// Tooltipster Всплывающая подсказка
 	var tooltip = $('.tooltip').tooltipster({
@@ -235,7 +167,12 @@ $(document).ready(function () {
 	// 	}
 	// });
 
-	// Слежение за изменением размера окна браузера
+	// Отслеживание скролла окна браузера
+	$(window).scroll(function() {
+		countNumber($(".count-number")); // Анимация увеличния значения числа
+	});
+
+	// Отслеживание изменения размера окна браузера
 	var heightResized = false;
 	$(window).resize(function() {
 		var windowWidth = $(window).width();
@@ -247,7 +184,7 @@ $(document).ready(function () {
 		// screenHeight(); // Блок с высотой окна браузера
 		// tooltipDisable(); // Отключение всплывающей подсказки
 		// countNumber(); // Анимация увеличения числа
-		// sliderReinstall() //Реинициализация слайдеров
+		// sliderReinstall() // Реинициализация слайдеров
 	});
 	
 });
@@ -362,4 +299,66 @@ function accordeon(accordeon) {
 			$this.next('.accordeon_content').stop().slideUp(time);
 		}
 	});
+};
+
+// Модальное окно
+function modal(modal) {
+	$('.modal-trigger').on('click', function() {
+		var $this = $(this),
+				data = $this.data('modal'),
+				thisModal = $(data),
+				modalOver = thisModal.next($('.modal_over')),
+				html = $('html'),
+				documentWidth = parseInt(document.documentElement.clientWidth),
+				windowsWidth = parseInt(window.innerWidth),
+				scrollbarWidth = windowsWidth - documentWidth;
+		thisModal.toggleClass('open')
+		.next('.modal_over').toggleClass('open');
+		html.toggleClass('lock').css('padding-right',scrollbarWidth);
+		$('.modal_close').on('click', function() {
+			thisModal.removeClass('open');
+			modalOver.removeClass('open');
+			html.removeClass('lock').css('padding-right',0);
+		});
+		modalOver.on('click', function() {
+			thisModal.removeClass('open');
+			modalOver.removeClass('open');
+			html.removeClass('lock').css('padding-right',0);
+		});
+	});
+};
+
+// Текст печатная машинка
+// function textPrint(block) {
+// 	var textPrint = block,
+// 		a = textPrint.text(),
+// 		j = 0,
+// 		c = a.length,
+// 		time = 50;
+// 	textPrint.text('');
+// 	setInterval(function () {
+// 		if (j<c) {
+// 			textPrint.text(textPrint.text() + a[j]);
+// 			j++;
+// 		}
+// 	},time);
+// };
+
+// Анимация увеличения значения числа
+var	countNumberStatus = true;
+function countNumber (block) {
+	var scrollEvent = ($(window).scrollTop() > (block.position().top - 400)),
+			valUp = block.data('val-up'),
+			valTo = block.data('val-to'),
+			valDuration = block.data('duration');
+	if(scrollEvent && countNumberStatus) {
+		$({numberValue: valUp}).animate({numberValue: valTo}, {
+			duration: valDuration,
+			easing: "swing",
+			step: function(val) {
+				block.html(Math.ceil(val));
+			}
+		});
+		countNumberStatus = false;
+	}
 };
