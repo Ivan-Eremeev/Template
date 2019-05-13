@@ -49,24 +49,14 @@ $(document).ready(function () {
 	tabs($('#tabs'));
 
 	// Аккордеон
-	$('.accordeon_trigger').click(function() {
-		var trigger = $(this),
-				allTrigger = trigger.parent().parent().find('.accordeon_trigger'),
-				content = trigger.siblings('.accordeon_content'),
-				allContent = trigger.parent().parent().find('.accordeon_content'),
-				time = 300;
-		if (!content.hasClass('open')) {
-			allContent.stop().removeClass('open');
-			content.stop().addClass('open');
-			allTrigger.removeClass('active');
-			trigger.addClass('active');
-		}
-		else {
-			content.stop().removeClass('open');
-			trigger.removeClass('active');
-		}
-	});
+	accordeon($('#accordeon'));
 
+	// matchHeight // Задание елементам одинаковой высоты
+	// $('.match-height').matchHeight();
+
+	// Autosize Изменение высоты текстового поля при добавлении контента
+	// autosize($('textarea'));
+	
 	// Модальное окно
 	$('.modal-trigger').on('click', function() {
 		var data = $(this).data('modal'),
@@ -109,12 +99,6 @@ $(document).ready(function () {
 		wheel: true, // Отключить прокрутку
 		wheelSpeed: 10, // Прокручивать пикселей
 	});
-
-	// matchHeight // Задание елементам одинаковой высоты
-	// $('.item').matchHeight();
-
-	// Autosize Изменение высоты текстового поля при добавлении контента
-	// autosize($('textarea'));
 
 	// Текст печатная машинка
 	// function textPrint() {
@@ -342,12 +326,40 @@ function fontResize() {
 // Табы
 function tabs(tabs) {
 	var trigger = tabs.find('#tabs_triggers').children(),
-			content = tabs.find('#tabs_content').children();
+			content = tabs.find('#tabs_content').children(),
+			time = 300;
+	content.filter('.hide').css({
+		display: 'none'});
 	trigger.click(function() {
-		var index = $(this).index();
-		trigger.removeClass('active');
-		$(this).addClass('active');
-		content.addClass('hide');
-		content.eq(index).removeClass('hide');
+		var $this = $(this),
+				index = $this.index();
+		if (!$this.hasClass('active')) {
+			trigger.removeClass('active');
+			$this.addClass('active');
+			content.hide();
+			content.eq(index).fadeIn(time);
+		}
+	});
+};
+
+// Аккордеон
+function accordeon(accordeon) {
+	var trigger = accordeon.find('.accordeon_trigger'),
+			content = accordeon.find('.accordeon_content'),
+			time = 300;
+	content.css({
+		display: 'none'});
+	trigger.on('click', function() {
+		$this = $(this);
+		if (!$this.hasClass('active')) {
+			trigger.removeClass('active');
+			$this.addClass('active');
+			content.stop().slideUp(time);
+			$this.next('.accordeon_content').stop().slideDown(time);
+		}
+		else {
+			$this.removeClass('active');
+			$this.next('.accordeon_content').stop().slideUp(time);
+		}
 	});
 };

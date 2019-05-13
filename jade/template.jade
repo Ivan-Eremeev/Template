@@ -77,7 +77,7 @@ block content
 				// /tabs
 
 				// accordeon
-				.accordeon
+				#accordeon
 					.accordeon_item
 						.accordeon_trigger triger 1
 						.accordeon_content
@@ -91,34 +91,6 @@ block content
 						.accordeon_content
 							| Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel consequatur, obcaecati repellendus laboriosam at quos, similique saepe hic vero fugit. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eveniet quibusdam temporibus officia molestias assumenda, sint deserunt nemo quas dolores fuga maxime, soluta provident blanditiis magni ipsum totam expedita quasi ipsa.
 				// /accordeon
-
-				// form
-				form.form(action="send.php" method="POST")
-					.form_row
-						input(type="text" name="name" placeholder="Введите имя")
-						input(type="tel" name="phone" placeholder="Введите номер телефона")
-						input(type="email" name="email" placeholder="Введите email")
-						.form_select
-							select(name="select")
-								option(value="1") Пункт 1
-								option(value="2") Пункт 2
-								option(value="3") Пункт 3
-						textarea(name="textarea" placeholder="Введите сообщение")
-					.form_checkbox
-						input#checkbox(type="checkbox" name="checkbox")
-						label(for="checkbox") Жмякни
-							span
-					.form_radio
-						input#radio-0(type="radio" name="radio")
-						label(for="radio-0") Жмякни
-							span 
-					.form_radio
-						input#radio-1(type="radio" name="radio")
-						label(for="radio-1") Жмякни
-							span
-					.form_btn
-						button Отправить
-				// /form
 
 				// modal
 				button.modal-trigger(data-modal="#modal-1") Модалка 1
