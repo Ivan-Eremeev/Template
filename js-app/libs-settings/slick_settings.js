@@ -1,14 +1,4 @@
-// Jade
-// .slider-nav
-// 	div
-// 	div
-// 	div
-// .slider-for
-// 	div
-// 	div
-// 	div
-
-function sliderInit(slider,sliderFor) {
+function slider(slider,sliderFor) {
   slider.slick({
     slidesToShow: 1, // Сколько слайдов показывать на экране
     slidesToScroll: 1, // Сколько слайдов пролистывать за раз
@@ -60,7 +50,6 @@ function sliderInit(slider,sliderFor) {
     slider.slick('slickNext');
   });
 };
-sliderInit($('.slider'),$('.slider-for'));
 
 // Инициализация слайдеров на десктопе и мобилке
 function sliderReinstall() {

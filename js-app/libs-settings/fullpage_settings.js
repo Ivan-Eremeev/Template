@@ -1,3 +1,5 @@
-$('#fullpage').fullpage({
+function fullpage(block) {
+	block.fullpage({
 		
-});
+	});
+};

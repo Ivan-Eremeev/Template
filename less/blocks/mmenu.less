@@ -17,11 +17,11 @@
 		cursor: pointer;
 	}
 	&_sublist {
-		@media (min-width: $break_sm + 1) {
+		@media (min-width: @break_sm + 1) {
 			display: none;
 		}
 	}
-	@media (max-width: $break_sm) {
+	@media (max-width: @break_sm) {
 		text-align: right;
 		&_btn {
 			display: inline-block;
@@ -31,23 +31,23 @@
 		}
 	}
 }
-#menu {
-	@media (max-width: $break_sm) {
+#mmenu {
+	@media (max-width: @break_sm) {
 		display: none;
 	}
 }
-#mm-menu {
-	@media (min-width: $break_sm + 1) {
+#mm-mmenu {
+	@media (min-width: @break_sm + 1) {
 		display: none;
 	}
 }
 .mm-page__blocker {
-	@media (min-width: $break_sm + 1) {
+	@media (min-width: @break_sm + 1) {
 		display: none !important;
 	}
 }
-.mm-wrapper_opening .mm-menu_position-right.mm-menu_opened~.mm-slideout {
-	@media (min-width: $break_sm + 1) {
+.mm-wrapper_opening .mm-mmenu_position-right.mm-mmenu_opened~.mm-slideout {
+	@media (min-width: @break_sm + 1) {
 		transform: translate(0);
 	}
 }

@@ -7,12 +7,11 @@
  *
  */
 
-// Подключение файлов
-// При использовании gulp поменять "@prepros-prepend" на "//="
+// Подключение файлов. При использовании gulp поменять "@prepros-prepend" на "//="
 // libs-settings/fancybox_settings.js
 // libs-settings/mmenu_settings.js
 // libs-settings/slick_settings.js
-// @prepros-append libs-settings/wow_js_settings.js
+// libs-settings/wow_js_settings.js
 // libs-settings/fullpage_settings.js
 // libs-settings/tinyscrollbar-settings.js
 // libs-settings/tooltipster-settings.js
@@ -80,6 +79,27 @@ $(document).ready(function () {
 	// Запуск и остановка видео html5
 	// videoControll($('.video'));
 
+	// Инициализация fancybox
+	// fancybox($('.fancy'));
+
+	// Программное включение fancybox по клику
+	// fancyboxProgramm($('#fancy'));
+
+	// Инициализация fullpage
+	// fullpage($('#fullpage'));
+
+	// Инициализация mmenu
+	// mmenu($('#mmenu'));
+
+	// Инициализация slick слайдера
+	// slider($('.slider'),$('.slider-for'));
+
+	// Инициализация tinyscrollbar
+	// tinyscrollbar($('#scrollbar1'));
+
+	// Инициализация tooltipster
+	// tooltipster($('.tooltip'));
+
 	// Отслеживание скролла окна браузера
 	$(window).scroll(function() {
 		// countNumber($(".count-number")); // Анимация увеличния значения числа
@@ -97,6 +117,7 @@ $(document).ready(function () {
 		// screenHeight(); // Блок с высотой окна браузера
 		// tooltipDisable(); // Отключение всплывающей подсказки
 		// sliderReinstall(); // Реинициализация слайдеров
+		// tooltipDisable(); // Отключение всплывающей подсказки
 	});
 	
 });

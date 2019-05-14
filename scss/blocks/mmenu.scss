@@ -31,12 +31,12 @@
 		}
 	}
 }
-#menu {
+#mmenu {
 	@media (max-width: $break_sm) {
 		display: none;
 	}
 }
-#mm-menu {
+#mm-mmenu {
 	@media (min-width: $break_sm + 1) {
 		display: none;
 	}
@@ -46,7 +46,7 @@
 		display: none !important;
 	}
 }
-.mm-wrapper_opening .mm-menu_position-right.mm-menu_opened~.mm-slideout {
+.mm-wrapper_opening .mm-mmenu_position-right.mm-mmenu_opened~.mm-slideout {
 	@media (min-width: $break_sm + 1) {
 		transform: translate(0);
 	}
