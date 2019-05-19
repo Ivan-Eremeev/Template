@@ -106,6 +106,14 @@ block content
 					#tooltip1
 						p Доступ эксперта к данной заявке будет прекращен, в случае если экспертиза завершена — она не будет учтена
 				// /tooltip
+
+				// yandex-map
+				.yandex-map#yandexMap(style="min-height: 300px;")
+				// /yandex-map
+
+				// google-map
+				.google-map#googleMap(style="min-height: 300px;")
+				// /google-map
 			
 		include blocks/footer.jade
 
@@ -121,4 +129,6 @@ block js
 	script(src="js/jquery.mmenu.all.js")
 	//- script(src="js/wow.min.js")
 	//- script(src="js/fullpage.min.js")
+	//- <script src="http://api-maps.yandex.ru/2.1/?lang=ru_RU"></script>
+	//- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDArYzQvxn3CL3pB92Iqn9gaDltBFLfF4Y"></script>
 	script(src="js/script.js")

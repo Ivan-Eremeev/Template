@@ -7,7 +7,7 @@
  *
  */
 
-// Подключение файлов. При использовании gulp поменять "@prepros-prepend" на "//="
+// Подключение файлов. При использовании gulp поменять "// @prepros-append" на "//="
 // libs-settings/fancybox_settings.js
 // libs-settings/mmenu_settings.js
 // libs-settings/slick_settings.js
@@ -15,6 +15,8 @@
 // libs-settings/fullpage_settings.js
 // libs-settings/tinyscrollbar-settings.js
 // libs-settings/tooltipster-settings.js
+// libs-settings/yandex-map-settings.js
+// libs-settings/google-map-settings.js
 
 $(document).ready(function () {
 
@@ -99,6 +101,12 @@ $(document).ready(function () {
 
 	// Инициализация tooltipster
 	// tooltipster($('.tooltip'));
+
+	// Инициализация Яндекс карты
+	// ymaps.ready(initYandexMap);
+
+	// Инициализация Google карты
+	initGoogleMap();
 
 	// Отслеживание скролла окна браузера
 	$(window).scroll(function() {
