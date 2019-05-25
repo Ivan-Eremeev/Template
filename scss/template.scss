@@ -44,6 +44,21 @@ h2 {
 		display: none;
 	}
 }
+.img-responsive {
+	position: relative;
+	overflow: hidden;
+	img {
+		width: 100%;
+		position: absolute;
+		top: 0;
+		left: 0;
+	}
+	&:after {
+		content: '';
+		display: block;
+		padding-top: 56.25%;
+	}
+}
 // /settings
 
 .header {
