@@ -117,6 +117,18 @@ $(document).ready(function () {
 	// Инициализация Google карты
 	// initGoogleMap();
 
+	// Инициализация стилизуемого скроллбара
+	// $('#scrollbar').scrollbar();
+
+	// 3d эффект вращения элемента при наведении
+	// rotate($('.card3d'));
+
+	// Паралакс относительно курсора мыши
+	// направление - data-direction="x или y или xy"
+	// интенсивность - data-intensity="3"
+	// скорость в мс - data-speed="100"
+	// parallaxMove($('.parallax-move'));
+
 	// Отслеживание скролла окна браузера
 	$(window).scroll(function() {
 		// countNumber($(".count-number")); // Анимация увеличния значения числа
@@ -400,6 +412,78 @@ $(document).ready(function () {
 // 			video.trigger('pause');
 // 			playing = false;
 // 		}
+// 	});
+// };
+
+// 3d эффект вращения элемента при наведении
+// function rotate(element) {
+// 	var card = element,
+// 			cardItem = card.find('.card3d_item');
+// 	card.css({
+// 		perspective: '1000px',
+// 		'transform-style': 'preserve-3d'
+// 	});
+// 	cardItem.mousemove(function(event) {
+// 		var $this = $(this),
+// 				coordinateX = event.offsetX,
+// 				coordinateY = event.offsetY,
+// 				halfHeight = ($this.outerHeight()/2),
+// 				halfWidth = $this.outerWidth()/2;
+// 				console.log(halfWidth);
+// 		$this.css({
+// 			transition: '0.2s',
+// 			transform: 'rotateX('+((coordinateY-halfHeight)/10)*-1+'deg) rotateY('+(coordinateX-halfWidth)/10+'deg)'
+// 		});
+// 	});
+// 	cardItem.mouseout(function() {
+// 		cardItem.css({
+// 			transform: 'rotate(0)'});
+// 	});
+// };
+
+// Паралакс относительно курсора мыши
+// function parallaxMove(parallax) {
+// 	var $window = $(window),
+// 			direction = parallax.data('direction'),
+// 			intensity = parallax.data('intensity'),
+// 			speed = parallax.data('speed');
+// 	if (!direction) {
+// 		direction = 'xy';
+// 	}
+// 	if (!intensity) {
+// 		intensity = 3;
+// 	}
+// 	if (!speed) {
+// 		speed = 100;
+// 	}
+// 	parallax.css({transition: (speed/1000)+'s'});
+// 	$window.mousemove(function(event) {
+// 		var left = event.clientX,
+// 				top = event.clientY,
+// 				windowWidth = $window.width(),
+// 				windowHeight = $window.height(),
+// 				moveX = ((left-windowWidth/2)*intensity/100).toFixed(),
+// 				moveY = ((top-windowHeight/2)*intensity/100).toFixed();
+// 		inVisible(parallax);
+// 		function inVisible(element) {
+// 			var topScroll = $(document).scrollTop(),
+// 					screenHeight = $(window).height(),
+// 					bottomScroll = topScroll + screenHeight,
+// 					elementHeight = element.height(),
+// 					elementTop = element.offset().top,
+// 					elementBottom = elementTop + elementHeight;
+// 			if (elementTop < bottomScroll && elementBottom > topScroll) {
+// 				if (direction == 'xy') {
+// 					parallax.css({transform: 'translateX('+moveX+'px) translateY('+moveY+'px)'});
+// 				}
+// 				else if (direction == 'x') {
+// 					parallax.css({transform: 'translateX('+moveX+'px)'});
+// 				}
+// 				else if (direction == 'y') {
+// 					parallax.css({transform: 'translateY('+moveY+'px)'});
+// 				}
+// 			}
+// 		};
 // 	});
 // };
 
