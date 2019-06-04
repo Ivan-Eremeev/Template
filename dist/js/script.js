@@ -123,6 +123,9 @@ $(document).ready(function () {
 	// 3d эффект вращения элемента при наведении
 	// rotate($('.card3d'));
 
+	// Показать еще новости
+	// limitBlock($('#news'));
+
 	// Паралакс относительно курсора мыши
 	// направление - data-direction="x или y или xy"
 	// интенсивность - data-intensity="3"
@@ -240,8 +243,8 @@ $(document).ready(function () {
 // 	});
 // };
 
-// // Аккордеон
-// function accordeon(accordeon) {
+// Аккордеон
+// function accordeon(accordeon, mobile) {
 // 	var trigger = accordeon.find('.accordeon_trigger'),
 // 			content = accordeon.find('.accordeon_content'),
 // 			time = 300;
@@ -253,13 +256,25 @@ $(document).ready(function () {
 // 			trigger.removeClass('active');
 // 			$this.addClass('active');
 // 			content.stop().slideUp(time);
-// 			$this.next('.accordeon_content').stop().slideDown(time);
+// 			$this.next('.accordeon_content').stop().slideDown(time).removeClass('hide');
 // 		}
 // 		else {
 // 			$this.removeClass('active');
-// 			$this.next('.accordeon_content').stop().slideUp(time);
+// 			$this.next('.accordeon_content').stop().slideUp(time).addClass('hide');
 // 		}
 // 	});
+// 	if (mobile == true) {
+// 		$(window).resize(function() {
+// 			if ($(window).width() > breakSm) {
+// 				trigger.removeClass('active');
+// 				content.removeClass('hide')
+// 					.attr('style', '');
+// 			}
+// 			else {
+// 				content.addClass('hide')
+// 			}
+// 		});
+// 	}
 // };
 
 // // Модальное окно
@@ -484,6 +499,52 @@ $(document).ready(function () {
 // 				}
 // 			}
 // 		};
+// 	});
+// };
+
+// Показать еще новости
+// function limitBlock(wrap) {
+// 	var news = wrap.find('.articles_col'),
+// 			newsNum = 3,
+// 			row = wrap.find('.row'),
+// 			news3 = news.slice(0, newsNum),
+// 			btn = wrap.find('.show-more'),
+// 			btnShow = btn.text(),
+// 			btnHide = 'Скрыть',
+// 			heightResized = false;
+// 	width();
+// 	$(window).resize(function() {
+// 		var windowWidth = $(window).width();
+// 		if (heightResized == windowWidth) {
+// 			return;
+// 		}
+// 		heightResized = windowWidth;
+// 		width();
+// 		console.log(heightResized, windowWidth);
+// 	});
+// 	function width() {
+// 		if ($(window).width() <= breakSm) {
+// 			news.remove();
+// 			row.prepend(news3);
+// 			btn.text(btnShow)
+// 				.removeClass('active');
+// 		}else {
+// 			row.prepend(news);
+// 			btn.text(btnHide)
+// 				.addClass('active');
+// 		}
+// 	};
+// 	btn.click(function() {
+// 		if (!btn.hasClass('active')) {
+// 			row.prepend(news);
+// 			btn.text(btnHide)
+// 				.addClass('active');
+// 		}else {
+// 			news.remove();
+// 			row.prepend(news3);
+// 			btn.text(btnShow)
+// 				.removeClass('active');
+// 		}
 // 	});
 // };
 
