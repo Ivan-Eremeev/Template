@@ -5,7 +5,7 @@ html {
 	}
 }
 a {
-	transition: .3s;
+	transition: .1s;
 	text-decoration: none;
 }
 button {
@@ -17,11 +17,10 @@ input {
 	outline: none;
 }
 .row {
-	@include row();
+	@include row-flex();
 }
 .wrapper {
 	@include wrapper();
-	padding-left: 130px;
 }
 body {
 	background-color: #fff;
@@ -77,7 +76,7 @@ h2 {
 	@include wrapper();
 }
 .row {
-	@include row();
+	@include row-flex();
 }
 .col {
 	@include col(4);

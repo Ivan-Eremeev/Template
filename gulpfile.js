@@ -1,5 +1,9 @@
-const preprocessor        = 'scss', // Препроцессор для стилей (scss, less)
-      gulpVersion         = '3'; // Версия галпа (3, 4)
+const preprocessor        = 'scss', // Выбрать препроцессор для стилей (scss или less)
+      gulpVersion         = '3'; // Версия галпа (3 или 4)
+
+// Команды
+// "gulp" - запуск gulp.
+// "gulp min" - сжатие js, css (создает минимизированные файлы script.min.js и style.min.css).
 
 const gulp                = require('gulp'),
       sass                = require('gulp-sass'),
@@ -29,10 +33,11 @@ if (preprocessor == 'scss') {
     return gulp.src('scss/style.scss')
     .pipe(sass().on('error', sass.logError))
     .pipe(autoprefixer({
-        browsers:['last 5 version'],
+        browsers:['last 3 version'],
         cascade: false
     }))
     .pipe(gulp.dest('dist/css'))
+    .pipe(browserSync.reload({stream:true}));
   });
 }
 
@@ -41,35 +46,17 @@ else if (preprocessor == 'less') {
     return gulp.src('less/style.less')
     .pipe(less())
     .pipe(autoprefixer({
-        browsers:['last 5 version'],
+        browsers:['last 3 version'],
         cascade: false
     }))
     .pipe(gulp.dest('dist/css'))
+    .pipe(browserSync.reload({stream:true}));
   });
 }
-
-gulp.task('css', function () {
-  return gulp.src('dist/css/style.css')
-  .pipe(cleanCSS({
-    level : 2
-  }))
-  .pipe(rename({
-    suffix: '.min'
-  }))
-  .pipe(gulp.dest('dist/css'))
-  .pipe(browserSync.reload({stream: true}));
-});
 
 gulp.task('js', function () {
     return gulp.src('js-app/*.js')
     .pipe(rigger())
-    // .pipe(uglify({
-    //   compress: false,
-    //   mangle: false,
-    //   output: {
-        
-    //   }
-    // }))
     .pipe(rename({
         basename: 'script',
         extname: '.js'
@@ -81,10 +68,33 @@ gulp.task('js', function () {
 gulp.task('browser-sync', function() {
     browserSync({
         server: {
-            baseDir: 'dist'
+            baseDir: './dist/'
         },
         notify: true
     });
+});
+
+gulp.task('css-min', function () {
+  return gulp.src('dist/css/style.css')
+  .pipe(cleanCSS({
+    level : 2
+  }))
+  .pipe(rename({
+    suffix: '.min'
+  }))
+  .pipe(gulp.dest('dist/css'))
+  .pipe(browserSync.reload({stream: true}));
+});
+
+gulp.task('js-min', function () {
+    return gulp.src('dist/js/script.js')
+    .pipe(rigger())
+    .pipe(uglify())
+    .pipe(rename({
+        suffix: '.min'
+    }))
+    .pipe(gulp.dest('dist/js'))
+    .pipe(browserSync.reload({stream: true}));
 });
 
 if (gulpVersion == '3') {
@@ -92,18 +102,20 @@ if (gulpVersion == '3') {
     gulp.watch('jade/**/*.jade', ['jade']);
     gulp.watch('js-app/**/*.js', ['js']);
     gulp.watch('scss/**/*.scss', ['style']);
-    gulp.watch('dist/css/style.css', ['css']);
   });
 
-  gulp.task('default', ['browser-sync', 'jade', 'js', 'style', 'css', 'watch']);
+  gulp.task('default', ['browser-sync', 'jade', 'js', 'style', 'watch']);
+
+  gulp.task('minify', ['css-min', 'js-min']);
 }
 else if (gulpVersion == '4') {
   gulp.task('watch', function () {
     gulp.watch('jade/**/*.jade', gulp.parallel('jade'));
     gulp.watch('js-app/**/*.js', gulp.parallel('js'));
     gulp.watch('scss/**/*.scss', gulp.parallel('style'));
-    gulp.watch('dist/css/style.css', gulp.parallel('css'));
   });
 
-  gulp.task('default', gulp.parallel('browser-sync', 'jade', 'js', 'style', 'css', 'watch'));
+  gulp.task('default', gulp.parallel('browser-sync', 'jade', 'js', 'style', 'watch'));
+
+  gulp.task('min', gulp.parallel('css-min', 'js-min'));
 }
