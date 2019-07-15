@@ -51,6 +51,18 @@ function slider(slider,sliderFor) {
   });
 };
 
+// Добавляем кастомную пагинацию в слайдер
+function addDotsInPagination(sliderB, sliderPagination) {
+  var sliderCount = sliderB.find('.js-slider-slide');
+  for (var i = 1; i < sliderCount.length + 1; i++) {
+    var dot = $('<div class="slider-pagination_dot"></div>');
+    dot.text(i);
+    sliderPagination.append(dot);
+  };
+  // Вызов слайдера нужно делать после добавления пагинации
+  slider();
+};
+
 // Инициализация слайдеров на десктопе и мобилке
 function sliderReinstall() {
   if (window.matchMedia("(max-width: 769px)").matches) {

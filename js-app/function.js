@@ -126,6 +126,9 @@ $(document).ready(function () {
 	// Показать еще новости
 	// limitBlock($('#news'));
 
+	// Ограничение выводимых символов в блоке текста
+	// function textLimit(blockText);
+
 	// Паралакс относительно курсора мыши
 	// направление - data-direction="x или y или xy"
 	// интенсивность - data-intensity="3"
@@ -200,9 +203,9 @@ $(document).ready(function () {
 
 // // Stiky menu // Липкое меню.
 // function stikyMenu(header) {
-// 	header.offset().top;
+// 	headerTop = header.offset().top;
 // 	$(window).scroll(function(){
-// 		if( $(window).scrollTop() > header ) {
+// 		if( $(window).scrollTop() > headerTop ) {
 // 			header.addClass('stiky');
 // 		} else {
 // 			header.removeClass('stiky');
@@ -248,33 +251,49 @@ $(document).ready(function () {
 // 	var trigger = accordeon.find('.accordeon_trigger'),
 // 			content = accordeon.find('.accordeon_content'),
 // 			time = 300;
-// 	content.css({
-// 		display: 'none'});
+// 	if (!mobile) {
+// 		mobile = false;
+// 	};
+// 	function contentDisplayNone() {
+// 		if (mobile == true && $(window).width() < breakMd) {
+// 			content.css({
+// 				display: 'none'
+// 			});
+// 		}
+// 		if (mobile == false) {
+// 			content.css({
+// 				display: 'none'
+// 			});
+// 		}
+// 	};
+// 	contentDisplayNone();
+// 	$(window).resize(function() {
+// 		contentDisplayNone();
+// 	});
 // 	trigger.on('click', function() {
 // 		$this = $(this);
-// 		if (!$this.hasClass('active')) {
-// 			trigger.removeClass('active');
-// 			$this.addClass('active');
-// 			content.stop().slideUp(time);
-// 			$this.next('.accordeon_content').stop().slideDown(time).removeClass('hide');
-// 		}
-// 		else {
-// 			$this.removeClass('active');
-// 			$this.next('.accordeon_content').stop().slideUp(time).addClass('hide');
+// 		if (mobile == true && $(window).width() < breakMd) {
+// 			if (!$this.hasClass('active')) {
+// 				trigger.removeClass('active');
+// 				$this.addClass('active');
+// 				content.stop().slideUp(time);
+// 				$this.next('.accordeon_content').stop().slideDown(time).removeClass('hide');
+// 			}else {
+// 				$this.removeClass('active');
+// 				$this.next('.accordeon_content').stop().slideUp(time).addClass('hide');
+// 			}
 // 		}
 // 	});
-// 	if (mobile == true) {
-// 		$(window).resize(function() {
-// 			if ($(window).width() > breakSm) {
-// 				trigger.removeClass('active');
-// 				content.removeClass('hide')
-// 					.attr('style', '');
-// 			}
-// 			else {
-// 				content.addClass('hide')
-// 			}
-// 		});
-// 	}
+// 	$(window).resize(function() {
+// 		if (mobile == true && $(window).width() > breakMd) {
+// 			trigger.removeClass('active');
+// 			content.removeClass('hide')
+// 				.attr('style', '');
+// 		}
+// 		else {
+// 			content.addClass('hide')
+// 		}
+// 	});
 // };
 
 // // Модальное окно
@@ -548,3 +567,40 @@ $(document).ready(function () {
 // 		}
 // 	});
 // };
+
+// Ограничение выводимых символов в блоке текста
+// function textLimit(blockText) {
+// 	var size = 47,
+// 			textButton = 'читать',
+// 			arr = new Array();
+//   blockText.each(function(index){
+//     var $el = $(this),
+//     		html = $el.html();
+//     arr.push(html);
+//   	if( html.length > size) {
+//   		$el.html(html.slice(0,size) + '...<a href="#" class="read-more-button" data-index="'+index+'">'+textButton+'</a>');
+//   	}
+//   });
+//   $('.read-more-button').click(function() {
+//   	var index = $(this).data('index');
+//   	$(this).parent().text(arr[index]);
+//   });
+// };
+
+// Вставляет svg в html, позволяет управлять цветом через css 
+// $('.js-img-svg img').each(function(){
+//   var $img = $(this);
+//   var imgClass = $img.attr('class');
+//   var imgURL = $img.attr('src');
+//   $.get(imgURL, function(data) {
+//     var $svg = $(data).find('svg');
+//     if(typeof imgClass !== 'undefined') {
+//       $svg = $svg.attr('class', imgClass+' replaced-svg');
+//     }
+//     $svg = $svg.removeAttr('xmlns:a');
+//     if(!$svg.attr('viewBox') && $svg.attr('height') && $svg.attr('width')) {
+//       $svg.attr('viewBox', '0 0 ' + $svg.attr('height') + ' ' + $svg.attr('width'))
+//     }
+//     $img.replaceWith($svg);
+//   }, 'xml');
+// });

@@ -61,7 +61,7 @@ $break_xs: 500px;
 @mixin row(){
 	@include clearfix();
 	margin-left: $gutter * - 1;
-	> div {
+	> * {
 		float: left;
 		word-wrap: break-word;
 		box-sizing: border-box;
@@ -72,7 +72,7 @@ $break_xs: 500px;
 	display: flex;
 	flex-wrap: wrap;
 	margin-left: $gutter * - 1;
-	> div {
+	> * {
 		word-wrap: break-word;
 		box-sizing: border-box;
 		padding-left: $gutter;
