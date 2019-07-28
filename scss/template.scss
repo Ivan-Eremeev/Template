@@ -35,12 +35,12 @@ h2 {
 }
 .mobile-hide {
 	@media (max-width: $break_sm) {
-		display: none;
+		display: none !important;
 	}
 }
 .mobile-visible {
 	@media (min-width: $break_sm + 1) {
-		display: none;
+		display: none !important;
 	}
 }
 .img-responsive {
