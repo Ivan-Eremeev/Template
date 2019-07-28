@@ -19,15 +19,14 @@
 // libs-settings/google-map-settings.js
 // mailto-ajax.js
 
-$(document).ready(function () {
+// Брэйкпоинты js
+var	breakXl = 1400,
+		breakLg = 1200,
+		breakMd = 1025,
+		breakSm = 769,
+		breakXs = 500;
 
-	// Брэйкпоинты js
-	var	breakXl = 1400,
-			breakLg = 1200,
-			breakMd = 1025,
-			breakSm = 769,
-			breakXs = 500;
-			
+$(document).ready(function () {			
 
 	// Отмена перехода по ссылкам
 	$('a[href="#"]').click(function(e) {

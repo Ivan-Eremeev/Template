@@ -1,5 +1,5 @@
 const preprocessor        = 'scss', // Выбрать препроцессор для стилей (scss или less)
-      gulpVersion         = '3'; // Версия галпа (3 или 4)
+      gulpVersion         = '4'; // Версия галпа (3 или 4)
 
 // Команды
 // "gulp" - запуск gulp.

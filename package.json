@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Gulp build",
   "devDependencies": {
+    "gulp": "*",
     "browser-sync": "*",
     "gulp-autoprefixer": "*",
     "gulp-clean-css": "*",
@@ -16,7 +17,5 @@
     "gulp-sass": "*",
     "gulp-uglify": "*"
   },
-  "dependencies": {
-    "gulp": "^3.9.1"
-  }
+  "dependencies": {}
 }
