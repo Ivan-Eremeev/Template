@@ -136,23 +136,23 @@ $(document).ready(function () {
 	// parallaxMove($('.parallax-move'));
 
 	// Отслеживание скролла окна браузера
-	$(window).scroll(function() {
-		// countNumber($(".count-number")); // Анимация увеличния значения числа
-	});
+	// $(window).scroll(function() {
+	// 	// countNumber($(".count-number")); // Анимация увеличния значения числа
+	// });
 
 	// Отслеживание изменения ширины окна браузера
-	var heightResized = false;
-	$(window).resize(function() {
-		var windowWidth = $(window).width();
-		if (heightResized == windowWidth) {
-			return;
-		}
-		heightResized = windowWidth;
-		// fontResize(); // Резиновый сайт
-		// screenHeight(); // Блок с высотой окна браузера
-		// tooltipDisable(); // Отключение всплывающей подсказки
-		// sliderReinstall(); // Реинициализация слайдеров
-	});
+	// var heightResized = false;
+	// $(window).resize(function() {
+	// 	var windowWidth = $(window).width();
+	// 	if (heightResized == windowWidth) {
+	// 		return;
+	// 	}
+	// 	heightResized = windowWidth;
+	// 	// fontResize(); // Резиновый сайт
+	// 	// screenHeight(); // Блок с высотой окна браузера
+	// 	// tooltipDisable(); // Отключение всплывающей подсказки
+	// 	// sliderReinstall(); // Реинициализация слайдеров
+	// });
 	
 });
 
@@ -588,7 +588,7 @@ $(document).ready(function () {
 // };
 
 // Вставляет svg в html, позволяет управлять цветом через css 
-// $('.js-img-svg img').each(function(){
+// $('img[src$=".svg"]').each(function(){
 //   var $img = $(this);
 //   var imgClass = $img.attr('class');
 //   var imgURL = $img.attr('src');

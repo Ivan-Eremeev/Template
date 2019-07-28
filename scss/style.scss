@@ -31,10 +31,9 @@ $break_xs: 500px;
 // Цвета
 // $black: #000;
 
-// Блоки
+// Блоки стилей
+@import 'template';
 @import 'blocks/menu';
 // @import 'blocks/mmenu';
 // @import 'blocks/modal';
 // @import 'blocks/tooltipster-noir';
-
-@import 'template';

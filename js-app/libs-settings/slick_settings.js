@@ -2,7 +2,7 @@ function slider(slider,sliderFor) {
   slider.slick({
     slidesToShow: 1, // Сколько слайдов показывать на экране
     slidesToScroll: 1, // Сколько слайдов пролистывать за раз
-    asNavFor: '.slider-for', // Связь со слайдерами
+    asNavFor: sliderFor, // Связь со слайдерами
     dots: true, // Пагинация
     arrows: true, // Стрелки
     speed: 500, // Скорость перехода слайдов
@@ -16,6 +16,8 @@ function slider(slider,sliderFor) {
     centerPadding: '0px', // Отступы слева и справа чтоб увидеть часть крайних слайдов
     adaptiveHeight: true, // Подгоняет высоту слайдера под элемент слайда
     variableWidth: false, // Подгоняет ширину слайдов под размер элемента,
+    swipe: true, // Перелистывание пальцем
+    draggable: true, // Перелистывание мышью
     responsive: [ // Адаптация
       {
       breakpoint: 992,
@@ -39,7 +41,7 @@ function slider(slider,sliderFor) {
     dots: false, // Пагинация
     arrows: false, // Стрелки
     fade: true, // Плавный переход (анимация исчезновения появления) В false будет листаться
-    asNavFor: '.slider-nav' // Связь со слайдерами
+    asNavFor: slider // Связь со слайдерами
   });
 
   // Кастомные кнопки "вперед" "назад"
