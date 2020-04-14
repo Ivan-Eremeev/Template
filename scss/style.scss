@@ -3,7 +3,7 @@
 @include reset(); // Сброс стилей
 
 @import 'libs';
-@import 'grid';
+@import 'mixingrid';
 
 // Переменные для кастомизации Mixingrid
 $columns: 12; // Колличество колонок
