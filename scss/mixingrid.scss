@@ -42,7 +42,7 @@ $break_xs: 500px;
 // Для задания отступов сверху и снизу, равных отступам между колонками использовать переменную $gutter
 
 @mixin wrapper() {
-	max-width: $max-width;
+	max-width: $max-width + $offset * 2;
 	padding-left: $offset;
 	padding-right: $offset;
 	margin-left: auto;
