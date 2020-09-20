@@ -58,7 +58,7 @@ gulp.task('js', function () {
     return gulp.src('js-app/*.js')
     .pipe(rigger())
     .pipe(rename({
-        basename: 'script',
+        basename: 'scripts',
         extname: '.js'
     }))
     .pipe(gulp.dest('dist/js'))
@@ -87,7 +87,7 @@ gulp.task('css-min', function () {
 });
 
 gulp.task('js-min', function () {
-    return gulp.src('dist/js/script.js')
+    return gulp.src('dist/js/scripts.js')
     .pipe(rigger())
     .pipe(uglify())
     .pipe(rename({
