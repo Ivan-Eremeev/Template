@@ -19,15 +19,14 @@
 // libs-settings/google-map-settings.js
 // mailto-ajax.js
 
-$(document).ready(function () {
+// Брэйкпоинты js
+var	breakXl = 1400,
+		breakLg = 1200,
+		breakMd = 1025,
+		breakSm = 769,
+		breakXs = 500;
 
-	// Брэйкпоинты js
-	var	breakXl = 1400,
-			breakLg = 1200,
-			breakMd = 1025,
-			breakSm = 769,
-			breakXs = 500;
-			
+$(document).ready(function () {			
 
 	// Отмена перехода по ссылкам
 	$('a[href="#"]').click(function(e) {
@@ -136,23 +135,23 @@ $(document).ready(function () {
 	// parallaxMove($('.parallax-move'));
 
 	// Отслеживание скролла окна браузера
-	$(window).scroll(function() {
-		// countNumber($(".count-number")); // Анимация увеличния значения числа
-	});
+	// $(window).scroll(function() {
+	// 	// countNumber($(".count-number")); // Анимация увеличния значения числа
+	// });
 
 	// Отслеживание изменения ширины окна браузера
-	var heightResized = false;
-	$(window).resize(function() {
-		var windowWidth = $(window).width();
-		if (heightResized == windowWidth) {
-			return;
-		}
-		heightResized = windowWidth;
-		// fontResize(); // Резиновый сайт
-		// screenHeight(); // Блок с высотой окна браузера
-		// tooltipDisable(); // Отключение всплывающей подсказки
-		// sliderReinstall(); // Реинициализация слайдеров
-	});
+	// var heightResized = false;
+	// $(window).resize(function() {
+	// 	var windowWidth = $(window).width();
+	// 	if (heightResized == windowWidth) {
+	// 		return;
+	// 	}
+	// 	heightResized = windowWidth;
+	// 	// fontResize(); // Резиновый сайт
+	// 	// screenHeight(); // Блок с высотой окна браузера
+	// 	// tooltipDisable(); // Отключение всплывающей подсказки
+	// 	// sliderReinstall(); // Реинициализация слайдеров
+	// });
 	
 });
 
@@ -588,7 +587,7 @@ $(document).ready(function () {
 // };
 
 // Вставляет svg в html, позволяет управлять цветом через css 
-// $('.js-img-svg img').each(function(){
+// $('img[src$=".svg"]').each(function(){
 //   var $img = $(this);
 //   var imgClass = $img.attr('class');
 //   var imgURL = $img.attr('src');
@@ -604,5 +603,3 @@ $(document).ready(function () {
 //     $img.replaceWith($svg);
 //   }, 'xml');
 // });
-
-//# sourceMappingURL=script.js.map

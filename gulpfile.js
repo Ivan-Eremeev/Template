@@ -57,10 +57,6 @@ else if (preprocessor == 'less') {
 gulp.task('js', function () {
     return gulp.src('js-app/*.js')
     .pipe(rigger())
-    .pipe(rename({
-        basename: 'scripts',
-        extname: '.js'
-    }))
     .pipe(gulp.dest('dist/js'))
     .pipe(browserSync.reload({stream: true}));
 });
@@ -88,10 +84,9 @@ gulp.task('css-min', function () {
 
 gulp.task('js-min', function () {
     return gulp.src('dist/js/scripts.js')
-    .pipe(rigger())
     .pipe(uglify())
     .pipe(rename({
-        suffix: '.min'
+      suffix: '.min'
     }))
     .pipe(gulp.dest('dist/js'))
     .pipe(browserSync.reload({stream: true}));
