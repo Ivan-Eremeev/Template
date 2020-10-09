@@ -34,7 +34,7 @@ $(document).ready(function () {
 	});
 
 	// Мобильное меню
-	// myMenu($('#menu'));
+	// myMenu($('.js-menu'));
 
 	// Блок с высотой окна браузера
 	// screenHeight($('#full-height'));
@@ -157,27 +157,26 @@ $(document).ready(function () {
 
 // Мобильное меню
 // function myMenu(menu) {
-// 	var menuBtn = menu.find('#menu-btn')
-// 			over = menu.find('.menu_over'),
+// 	var menuBtn = menu.find('#menu-btn'),
+// 			over = menu.find('#menu-over'),
+// 			close = menu.find('#menu-close'),
 // 			documentWidth = parseInt(document.documentElement.clientWidth),
 // 			windowsWidth = parseInt(window.innerWidth),
 // 			scrollbarWidth = windowsWidth - documentWidth,
 // 			html = $('html');
-// 	menuBtn.click(function () {
+// 	menuBtn.on('click', menuOpen);
+// 	over.on('click', menuClose);
+// 	close.on('click', menuClose);
+// 	function menuOpen() {
 // 		html.toggleClass('lock').css('padding-right',scrollbarWidth);
 // 		menu.toggleClass('open');
-// 		menuBtn.toggleClass('is-active');
-// 		over.click(function() {
-// 			html.removeClass('lock').css('padding-right',0);
-// 			menu.removeClass('open');
-// 			menuBtn.removeClass('is-active');
-// 		});
-// 		menu.find('a').click(function() {
-// 			html.removeClass('lock').css('padding-right',0);
-// 			menu.removeClass('open');
-// 			menuBtn.removeClass('is-active');
-// 		});
-// 	});	
+// 		menuBtn.toggleClass('active');
+// 	}
+// 	function menuClose() {
+// 		html.removeClass('lock').css('padding-right',0);
+// 		menu.removeClass('open');
+// 		menuBtn.removeClass('active');
+// 	}
 // };
 
 // // Блок с высотой окна браузера
