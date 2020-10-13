@@ -160,23 +160,29 @@ $(document).ready(function () {
 // 	var menuBtn = menu.find('#menu-btn'),
 // 			over = menu.find('#menu-over'),
 // 			close = menu.find('#menu-close'),
-// 			documentWidth = parseInt(document.documentElement.clientWidth),
-// 			windowsWidth = parseInt(window.innerWidth),
-// 			scrollbarWidth = windowsWidth - documentWidth,
-// 			html = $('html');
+// 			html = $('html'),
+// 			scrollbarWidth;
 // 	menuBtn.on('click', menuOpen);
 // 	over.on('click', menuClose);
 // 	close.on('click', menuClose);
 // 	function menuOpen() {
-// 		html.toggleClass('lock').css('padding-right',scrollbarWidth);
-// 		menu.toggleClass('open');
-// 		menuBtn.toggleClass('active');
+// 		html.addClass('lock').css('padding-right',scrollbarWidth);
+// 		menu.addClass('open');
+// 		menuBtn.addClass('active');
 // 	}
 // 	function menuClose() {
 // 		html.removeClass('lock').css('padding-right',0);
 // 		menu.removeClass('open');
 // 		menuBtn.removeClass('active');
 // 	}
+// 	function scrollbarWidthCalc() {
+// 		var documentWidth = parseInt(document.documentElement.clientWidth),
+// 				windowsWidth = parseInt(window.innerWidth);
+// 		scrollbarWidth = windowsWidth - documentWidth;
+// 		console.log(scrollbarWidth);
+// 	}
+// 	scrollbarWidthCalc();
+// 	$(window).resize(scrollbarWidthCalc);
 // };
 
 // // Блок с высотой окна браузера
