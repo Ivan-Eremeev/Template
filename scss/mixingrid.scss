@@ -1,8 +1,8 @@
 //  * Mixingrid
 //  * @autor Eremeev Ivan
 //  * @email ivan.frontcoder@gmail.com
-//  * Version 1.0
-//  * 2018
+//  * Version 1.1
+//  * 2020
 
 
 //* Описание *//
@@ -26,7 +26,7 @@
 // @include col-sm(6);
 // Для "xs" размера экрана:
 // @include col-xs(12);
-// Если нужны колонки без отступов(прижатые друг к другу вплотную):
+// Если нужны колонки без отступов(прижатые друг к другу вплотную). Добавить к row:
 // @include no-gutter();
 // Для задания отступов сверху и снизу, равных отступам между колонками использовать переменную $gutter
 
@@ -49,6 +49,7 @@ $break_xs: 500px;
 //* Код *//
 
 @mixin wrapper() {
+	width: 100%;
 	max-width: $max-width + $offset * 2;
 	padding-left: $offset;
 	padding-right: $offset;
@@ -104,8 +105,11 @@ $break_xs: 500px;
 	@include xs(width, 100% / $columns * $n);
 }
 @mixin no-gutter() {
-	padding-left: 0;
-	padding-right: 0;
+	margin-left: 0;
+	>* {
+		padding-left: 0;
+		padding-right: 0;
+	}
 }
 @mixin xl($name, $value){
 	@media screen and (max-width: $break_xl){
