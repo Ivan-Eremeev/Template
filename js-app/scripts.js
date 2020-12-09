@@ -7,7 +7,7 @@
  *
  */
 
-// Подключение файлов. При использовании gulp поменять "// @prepros-append" на "//="
+// Подключение файлов. Использовать "//=" перед строкой пути
 // libs-settings/fancybox_settings.js
 // libs-settings/mmenu_settings.js
 // libs-settings/slick_settings.js
