@@ -55,7 +55,7 @@ else if (preprocessor == 'less') {
 }
 
 gulp.task('js', function () {
-    return gulp.src('js-app/*.js')
+    return gulp.src('js-app/scripts.js')
     .pipe(rigger())
     .pipe(gulp.dest('dist/js'))
     .pipe(browserSync.reload({stream: true}));

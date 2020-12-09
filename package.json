@@ -18,7 +18,6 @@
     "gulp-uglify": "*",
     "gulp-group-css-media-queries": "*"
   },
-  "dependencies": {
-  },
+  "dependencies": {},
   "browserslist": "last 3 version"
 }
