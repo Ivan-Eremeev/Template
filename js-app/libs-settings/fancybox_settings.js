@@ -1,5 +1,6 @@
 function fancybox(fancy) {
   fancy.fancybox({
+  	selector : '.element', // Инициализация для динамически добавляемых элементов
     toolbar  : true, // Кнопки "закрыть" и "зум"
     smallBtn : false, // Маленькая кнопка "закрыть"
     loop: false, // Зацикленный просмотр
@@ -12,6 +13,9 @@ function fancybox(fancy) {
       // "thumbs",
       "close"
     ],
+    afterShow : function( instance, current ) { // Связать с slick slider
+	    current.opts.$orig.closest(".slick-initialized").slick('slickGoTo', parseInt(current.index), true);
+	},
   });
 };
 
