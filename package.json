@@ -19,5 +19,5 @@
     "gulp-group-css-media-queries": "*"
   },
   "dependencies": {},
-  "browserslist": "last 3 version"
+  "browserslist": "last 5 version"
 }
