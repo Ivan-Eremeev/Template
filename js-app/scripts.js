@@ -572,5 +572,47 @@ $(document).ready(function () {
 	// 	}
 	// }
 	// addClassForScroll($('.js-addClassForScroll'));
+
+	// // Circles | Круговой счетчик
+	// // data-value="" Значение до которого крутится счетчик
+	// // data-size="" Размер счетчика. Для адаптива в css - canvas width 100% height 100% и родительским блоком ограничивать
+	// // data-color="" Цвет пустого
+	// // data-fill="" Цвет заливки
+	// // data-duration="" Длительность анимации. По умолчанию значение data-value соответствует секундам
+	// // data-border="" Ширина линии
+	// function circleTimer(timer) {
+	// 	if (timer.length) {
+	// 		timer.each(function () {
+	// 			var $this = $(this),
+	// 					val = $this.data('value'),
+	// 					$size = $this.data('size'),
+	// 					$color = $this.data('color'),
+	// 					$fill = $this.data('fill'),
+	// 					$duration = $this.data('duration'),
+	// 					borderWidth = $this.data('border');
+	// 					if (!val) val = 10;
+	// 					if (!$size) $size = 50;
+	// 					if (!$color) $color = '#e5e5e5';
+	// 					if (!$fill) $fill = '#4ce54c';
+	// 					if (!$duration) $duration = val * 1000;
+	// 					if (!borderWidth) borderWidth = 2;
+	// 			$this.circleProgress({
+	// 				// animationStartValue: 1, // Старт анимации с 1 и значение value 0 запускает анимацию в обратном направлении
+	// 				// startAngle: 2, // Старт анимации с данного угла
+	// 				value: 1, // Заполнение счетчика. 1 - полностью, 0.5 - половина
+	// 				size: $size,
+	// 				emptyFill: $color,
+	// 				fill: $fill,
+	// 				thickness: borderWidth,
+	// 				animation: { duration: $duration },
+	// 				// reverse: true,
+	// 			// Добавляет цифры в span в счетчике
+	// 			}).on('circle-animation-progress', function (event, progress, stepValue) {
+	// 				$(this).find('span').html(Math.round(val * stepValue));
+	// 			});
+	// 		})
+	// 	}
+	// }
+	// circleTimer($('.js-circle'));
 	
 });
