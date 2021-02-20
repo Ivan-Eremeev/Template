@@ -1,11 +1,24 @@
-const preprocessor        = 'scss', // Выбрать препроцессор для стилей (scss или less)
-      gulpVersion         = '4'; // Версия галпа (3 или 4)
-
-// Команды
+// * Команды *
 // "gulp" - запуск gulp.
 // "gulp min" - сжатие js, css (создает минимизированные файлы script.min.js и style.min.css).
 // "gulp mg" - группировка всех медиазапросов в кучу.
 
+// * Настройки *
+const preprocessor        = 'scss', // Выбрать препроцессор для стилей (scss или less)
+      gulpVersion         = '4'; // Версия галпа (3 или 4)
+
+// * Пути к папкам относительно корня проекта *
+const scssPath            = 'scss', // Scss
+      lessPath            = 'less', // Less
+      cssPath             = 'dist/css', // Css
+      pugPath             = 'jade', // Pug
+      htmlPath            = 'dist', // Html
+      jsAppPath           = 'js-app', // Js до сборки
+      jsPath              = 'dist/js'; // Js после сборки
+
+
+
+// Код
 const gulp                = require('gulp'),
       sass                = require('gulp-sass'),
       less                = require('gulp-less'),
@@ -19,83 +32,81 @@ const gulp                = require('gulp'),
       rename              = require("gulp-rename"),
       gcmq                = require('gulp-group-css-media-queries');
 
-
-
 gulp.task('jade', function buildHTML() {
-  return gulp.src('jade/*.jade')
+  return gulp.src( pugPath + '/*.jade')
     .pipe(pug({
       pretty: '\t'
     }))
-    .pipe(gulp.dest('dist'))
+    .pipe(gulp.dest( htmlPath ))
     .pipe(browserSync.reload({stream:true}));
 });
 
 if (preprocessor == 'scss') {
   gulp.task('style', function () {
-    return gulp.src('scss/style.scss')
+    return gulp.src( scssPath + '/style.scss')
     .pipe(sass().on('error', sass.logError))
     .pipe(autoprefixer({
         cascade: false
     }))
-    .pipe(gulp.dest('dist/css'))
+    .pipe(gulp.dest( cssPath ))
     .pipe(browserSync.reload({stream:true}));
   });
 }
 
 else if (preprocessor == 'less') {
   gulp.task('style', function () {
-    return gulp.src('less/style.less')
+    return gulp.src( lessPath + '/style.less')
     .pipe(less())
     .pipe(autoprefixer({
         cascade: false
     }))
-    .pipe(gulp.dest('dist/css'))
+    .pipe(gulp.dest( cssPath ))
     .pipe(browserSync.reload({stream:true}));
   });
 }
 
 gulp.task('js', function () {
-    return gulp.src('js-app/scripts.js')
+    return gulp.src( jsAppPath + '/scripts.js')
     .pipe(rigger())
-    .pipe(gulp.dest('dist/js'))
+    .pipe(gulp.dest( jsPath ))
     .pipe(browserSync.reload({stream: true}));
 });
 
 gulp.task('browser-sync', function() {
     browserSync({
         server: {
-            baseDir: './dist/'
+            baseDir: htmlPath
         },
         notify: true
     });
 });
 
 gulp.task('css-min', function () {
-  return gulp.src('dist/css/style.css')
+  return gulp.src( cssPath + '/style.css')
   .pipe(cleanCSS({
     level : 2
   }))
   .pipe(rename({
     suffix: '.min'
   }))
-  .pipe(gulp.dest('dist/css'))
+  .pipe(gulp.dest( cssPath ))
   .pipe(browserSync.reload({stream: true}));
 });
 
 gulp.task('js-min', function () {
-    return gulp.src('dist/js/scripts.js')
+    return gulp.src( jsPath + '/scripts.js')
     .pipe(uglify())
     .pipe(rename({
       suffix: '.min'
     }))
-    .pipe(gulp.dest('dist/js'))
+    .pipe(gulp.dest( jsPath ))
     .pipe(browserSync.reload({stream: true}));
 });
 
 gulp.task('media-group', function () {
-    return gulp.src('dist/css/style.css')
+    return gulp.src( cssPath + '/style.css')
     .pipe(gcmq())
-    .pipe(gulp.dest('dist/css'))
+    .pipe(gulp.dest( cssPath ))
     .pipe(browserSync.reload({stream: true}));
 });
 
