@@ -1,7 +1,7 @@
 // * Команды *
 // "gulp" - запуск gulp.
 // "gulp min" - сжатие js, css (создает минимизированные файлы script.min.js и style.min.css).
-// "gulp mg" - группировка всех медиазапросов в кучу.
+// "gulp mg" - группировка всех медиазапросов в конец файла style.css.
 
 // * Настройки *
 const preprocessor        = 'scss', // Выбрать препроцессор для стилей (scss или less)
@@ -11,7 +11,7 @@ const preprocessor        = 'scss', // Выбрать препроцессор �
 const scssPath            = 'scss', // Scss
       lessPath            = 'less', // Less
       cssPath             = 'dist/css', // Css
-      pugPath             = 'jade', // Pug
+      pugPath             = 'pug', // Pug
       htmlPath            = 'dist', // Html
       jsAppPath           = 'js-app', // Js до сборки
       jsPath              = 'dist/js'; // Js после сборки
@@ -32,8 +32,8 @@ const gulp                = require('gulp'),
       rename              = require("gulp-rename"),
       gcmq                = require('gulp-group-css-media-queries');
 
-gulp.task('jade', function buildHTML() {
-  return gulp.src( pugPath + '/*.jade')
+gulp.task('pug', function buildHTML() {
+  return gulp.src( pugPath + '/*.pug')
     .pipe(pug({
       pretty: '\t'
     }))
@@ -112,12 +112,12 @@ gulp.task('media-group', function () {
 
 if (gulpVersion == '3') {
   gulp.task('watch', function () {
-    gulp.watch('jade/**/*.jade', ['jade']);
+    gulp.watch('pug/**/*.pug', ['pug']);
     gulp.watch('js-app/**/*.js', ['js']);
     gulp.watch('scss/**/*.scss', ['style']);
   });
 
-  gulp.task('default', ['browser-sync', 'jade', 'js', 'style', 'watch']);
+  gulp.task('default', ['browser-sync', 'pug', 'js', 'style', 'watch']);
 
   gulp.task('minify', ['css-min', 'js-min']);
 
@@ -125,12 +125,12 @@ if (gulpVersion == '3') {
 }
 else if (gulpVersion == '4') {
   gulp.task('watch', function () {
-    gulp.watch('jade/**/*.jade', gulp.parallel('jade'));
+    gulp.watch('pug/**/*.pug', gulp.parallel('pug'));
     gulp.watch('js-app/**/*.js', gulp.parallel('js'));
     gulp.watch('scss/**/*.scss', gulp.parallel('style'));
   });
 
-  gulp.task('default', gulp.parallel('browser-sync', 'jade', 'js', 'style', 'watch'));
+  gulp.task('default', gulp.parallel('browser-sync', 'pug', 'js', 'style', 'watch'));
 
   gulp.task('min', gulp.parallel('css-min', 'js-min'));
 

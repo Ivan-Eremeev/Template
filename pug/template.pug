@@ -1,4 +1,4 @@
-extends blocks/base.jade
+extends blocks/base.pug
 
 block title 
 	title Главная
@@ -18,7 +18,7 @@ block content
 
 	.page
 
-		include blocks/header.jade
+		include blocks/header.pug
 		
 		.content
 			.wrapper
@@ -157,7 +157,7 @@ block content
 				.google-map#googleMap(style="min-height: 300px;")
 				// /google-map
 			
-		include blocks/footer.jade
+		include blocks/footer.pug
 
 block js-libs
 	script(src="js/libs/jquery.min.js")
