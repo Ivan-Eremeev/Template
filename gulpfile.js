@@ -1,7 +1,8 @@
 // * Команды *
 // "gulp" - запуск gulp.
-// "gulp min" - сжатие js, css (создает минимизированные файлы script.min.js и style.min.css).
 // "gulp mg" - группировка всех медиазапросов в конец файла style.css.
+// "gulp min" - сжимает js, css (создает минимизированные файлы script.min.js и style.min.css).
+// "gulp img-min" - сжимает изображения
 
 // * Настройки *
 const preprocessor        = 'scss', // Выбрать препроцессор для стилей (scss или less)
@@ -14,7 +15,8 @@ const scssPath            = 'scss', // Scss
       pugPath             = 'pug', // Pug
       htmlPath            = 'dist', // Html
       jsAppPath           = 'js-app', // Js до сборки
-      jsPath              = 'dist/js'; // Js после сборки
+      jsPath              = 'dist/js', // Js после сборки
+      imgPath             = 'dist/img'; // Изображения
 
 
 
@@ -30,7 +32,8 @@ const gulp                = require('gulp'),
       browserSync         = require('browser-sync'),
       uglify              = require('gulp-uglify'),
       rename              = require("gulp-rename"),
-      gcmq                = require('gulp-group-css-media-queries');
+      gcmq                = require('gulp-group-css-media-queries'),
+      imagemin            = require('gulp-imagemin');
 
 gulp.task('pug', function buildHTML() {
   return gulp.src( pugPath + '/*.pug')
@@ -94,13 +97,19 @@ gulp.task('css-min', function () {
 });
 
 gulp.task('js-min', function () {
-    return gulp.src( jsPath + '/scripts.js')
-    .pipe(uglify())
-    .pipe(rename({
-      suffix: '.min'
-    }))
-    .pipe(gulp.dest( jsPath ))
-    .pipe(browserSync.reload({stream: true}));
+  return gulp.src( jsPath + '/scripts.js')
+  .pipe(uglify())
+  .pipe(rename({
+    suffix: '.min'
+  }))
+  .pipe(gulp.dest( jsPath ))
+  .pipe(browserSync.reload({stream: true}));
+});
+
+gulp.task('img-min', function () {
+  return gulp.src(imgPath + '/*' )
+    .pipe(imagemin())
+    .pipe(gulp.dest(imgPath + '/min'));
 });
 
 gulp.task('media-group', function () {
