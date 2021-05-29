@@ -33,10 +33,12 @@ const gulp                = require('gulp'),
       uglify              = require('gulp-uglify'),
       rename              = require("gulp-rename"),
       gcmq                = require('gulp-group-css-media-queries'),
-      imagemin            = require('gulp-imagemin');
+      imagemin            = require('gulp-imagemin'),
+      plumber             = require('gulp-plumber');
 
 gulp.task('pug', function buildHTML() {
   return gulp.src( pugPath + '/*.pug')
+    .pipe(plumber())
     .pipe(pug({
       pretty: '\t'
     }))
@@ -47,6 +49,7 @@ gulp.task('pug', function buildHTML() {
 if (preprocessor == 'scss') {
   gulp.task('style', function () {
     return gulp.src( scssPath + '/style.scss')
+    .pipe(plumber())
     .pipe(sass().on('error', sass.logError))
     .pipe(autoprefixer({
         cascade: false
@@ -59,6 +62,7 @@ if (preprocessor == 'scss') {
 else if (preprocessor == 'less') {
   gulp.task('style', function () {
     return gulp.src( lessPath + '/style.less')
+    .pipe(plumber())
     .pipe(less())
     .pipe(autoprefixer({
         cascade: false
@@ -108,7 +112,9 @@ gulp.task('js-min', function () {
 
 gulp.task('img-min', function () {
   return gulp.src(imgPath + '/*' )
-    .pipe(imagemin())
+    .pipe(imagemin({
+      verbose: true
+    }))
     .pipe(gulp.dest(imgPath + '/min'));
 });
 

@@ -13,6 +13,7 @@
     "gulp-imagemin": "*",
     "gulp-less": "*",
     "gulp-minify": "*",
+    "gulp-plumber": "*",
     "gulp-pug": "*",
     "gulp-rename": "*",
     "gulp-rigger": "*",
