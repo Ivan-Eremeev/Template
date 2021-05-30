@@ -33,7 +33,8 @@ const gulp                = require('gulp'),
       uglify              = require('gulp-uglify'),
       rename              = require("gulp-rename"),
       gcmq                = require('gulp-group-css-media-queries'),
-      imagemin            = require('gulp-imagemin'),
+      imageMin            = require('gulp-imagemin'),
+      pngquant            = require('imagemin-pngquant'),
       plumber             = require('gulp-plumber');
 
 gulp.task('pug', function buildHTML() {
@@ -111,8 +112,13 @@ gulp.task('js-min', function () {
 });
 
 gulp.task('img-min', function () {
-  return gulp.src(imgPath + '/*' )
-    .pipe(imagemin({
+  return gulp.src(imgPath + '/**/*' )
+    .pipe(imageMin([
+      imageMin.gifsicle(),
+      imageMin.mozjpeg(),
+      imageMin.svgo(),
+      pngquant()
+    ], {
       verbose: true
     }))
     .pipe(gulp.dest(imgPath + '/min'));
