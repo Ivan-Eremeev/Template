@@ -20,6 +20,7 @@ function slider(slider,sliderFor) {
       variableWidth: false, // Подгоняет ширину слайдов под размер элемента,
       swipe: true, // Перелистывание пальцем
       draggable: true, // Перелистывание мышью
+      swipeToSlide: true, // Свободное перелистывание (на произвольное кол-во слайдов)
       responsive: [ // Адаптация
         {
         breakpoint: 992,
