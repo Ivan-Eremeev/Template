@@ -37,7 +37,7 @@ $break_xs: 500px;
 // ) !default;
 // $gutter: $grid-gutter-width; // Переменная для задания отступов равных междуколоночным
 
-// @import 'bootstrap/bootstrap'; // Подключение бутстрап
+@import 'bootstrap/bootstrap'; // Подключение бутстрап
 
 // Шрифты
 // @include font-face("EastAP", "../fonts/EastAP/EastAP", bold, italic);

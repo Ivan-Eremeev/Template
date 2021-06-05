@@ -132,8 +132,8 @@ $(document).ready(function () {
 	// 				if (!$this.hasClass('active')) {
 	// 					trigger.removeClass('active');
 	// 					$this.addClass('active');
-	// 					content.hide();
-	// 					content.eq(index).fadeIn(time);
+	// 					content.removeClass('open').hide();
+	// 					content.eq(index).fadeIn(time, function () {$(this).addClass('open')});
 	// 				}else {
 	// 					return false;
 	// 				}
@@ -141,7 +141,7 @@ $(document).ready(function () {
 	// 		});
 	// 	}
 	// }
-	// tabs($('.js_tabs'));
+	// tabs($('.js-tabs'));
 
 	// // Аккордеон
 	// function accordeon(accordeon, mobile) {
