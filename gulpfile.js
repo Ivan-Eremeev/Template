@@ -6,7 +6,8 @@
 
 // * Настройки *
 const preprocessor        = 'scss', // Выбрать препроцессор для стилей (scss или less)
-      gulpVersion         = '4'; // Версия галпа (3 или 4)
+      gulpVersion         = '4', // Версия галпа (3 или 4)
+      jsOn                = true; // Нужно ли компилировать js
 
 // * Пути к папкам относительно корня проекта *
 const scssPath            = 'scss', // Scss
@@ -38,13 +39,13 @@ const gulp                = require('gulp'),
       plumber             = require('gulp-plumber');
 
 gulp.task('pug', function buildHTML() {
-  return gulp.src( pugPath + '/*.pug')
+  return gulp.src(pugPath + '/*.pug')
     .pipe(plumber())
     .pipe(pug({
       pretty: '\t'
     }))
-    .pipe(gulp.dest( htmlPath ))
-    .pipe(browserSync.reload({stream:true}));
+    .pipe(gulp.dest(htmlPath))
+    .pipe(browserSync.reload({ stream: true }));
 });
 
 if (preprocessor == 'scss') {
@@ -74,10 +75,12 @@ else if (preprocessor == 'less') {
 }
 
 gulp.task('js', function () {
-    return gulp.src( jsAppPath + '/scripts.js')
-    .pipe(rigger())
-    .pipe(gulp.dest( jsPath ))
-    .pipe(browserSync.reload({stream: true}));
+  if (jsOn) {
+    return gulp.src(jsAppPath + '/scripts.js')
+      .pipe(rigger())
+      .pipe(gulp.dest(jsPath))
+      .pipe(browserSync.reload({ stream: true }));
+  }
 });
 
 gulp.task('browser-sync', function() {
@@ -133,9 +136,14 @@ gulp.task('media-group', function () {
 
 if (gulpVersion == '3') {
   gulp.task('watch', function () {
-    gulp.watch('pug/**/*.pug', ['pug']);
-    gulp.watch('js-app/**/*.js', ['js']);
-    gulp.watch('scss/**/*.scss', ['style']);
+    gulp.watch(pugPath + '/**/*.pug', ['pug']);
+    gulp.watch(htmlPath + '/**/*.html', function reload(done) {
+      browserSync.reload();
+      done();
+    });
+    gulp.watch(jsAppPath + '/**/*.js', ['js']);
+    gulp.watch(scssPath + '/**/*.scss', ['style']);
+    gulp.watch(lessPath + '/**/*.less', ['style']);
   });
 
   gulp.task('default', ['browser-sync', 'pug', 'js', 'style', 'watch']);
@@ -146,9 +154,14 @@ if (gulpVersion == '3') {
 }
 else if (gulpVersion == '4') {
   gulp.task('watch', function () {
-    gulp.watch('pug/**/*.pug', gulp.parallel('pug'));
-    gulp.watch('js-app/**/*.js', gulp.parallel('js'));
-    gulp.watch('scss/**/*.scss', gulp.parallel('style'));
+    gulp.watch(pugPath + '/**/*.pug', gulp.parallel('pug'));
+    gulp.watch(htmlPath + '/**/*.html', function reload(done) {
+      browserSync.reload();
+      done();
+    });
+    gulp.watch(jsAppPath + '/**/*.js', gulp.parallel('js'));
+    gulp.watch(scssPath + '/**/*.scss', gulp.parallel('style'));
+    gulp.watch(lessPath + '/**/*.less', gulp.parallel('style'));
   });
 
   gulp.task('default', gulp.parallel('browser-sync', 'pug', 'js', 'style', 'watch'));
