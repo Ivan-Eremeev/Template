@@ -5,38 +5,38 @@
 // "gulp img-min" - сжимает изображения
 
 // * Настройки *
-const preprocessor        = 'scss', // Выбрать препроцессор для стилей (scss или less)
-      gulpVersion         = '4', // Версия галпа (3 или 4)
-      jsOn                = true; // Нужно ли компилировать js
+const preprocessor = 'scss', // Выбрать препроцессор для стилей (scss или less)
+  gulpVersion = '4', // Версия галпа (3 или 4)
+  jsOn = true; // Нужно ли компилировать js
 
 // * Пути к папкам относительно корня проекта *
-const scssPath            = 'scss', // Scss
-      lessPath            = 'less', // Less
-      cssPath             = 'dist/css', // Css
-      pugPath             = 'pug', // Pug
-      htmlPath            = 'dist', // Html
-      jsAppPath           = 'js-app', // Js до сборки
-      jsPath              = 'dist/js', // Js после сборки
-      imgPath             = 'dist/img'; // Изображения
+const scssPath = 'scss', // Scss
+  lessPath = 'less', // Less
+  cssPath = 'dist/css', // Css
+  pugPath = 'pug', // Pug
+  htmlPath = 'dist', // Html
+  jsAppPath = 'js-app', // Js до сборки
+  jsPath = 'dist/js', // Js после сборки
+  imgPath = 'dist/img'; // Изображения
 
 
 
 // Код
-const gulp                = require('gulp'),
-      sass                = require('gulp-sass'),
-      less                = require('gulp-less'),
-      concatJS            = require('gulp-concat'),
-      pug                 = require('gulp-pug'),
-      autoprefixer        = require('gulp-autoprefixer'),
-      cleanCSS            = require('gulp-clean-css'),
-      rigger              = require('gulp-rigger'),
-      browserSync         = require('browser-sync'),
-      uglify              = require('gulp-uglify'),
-      rename              = require("gulp-rename"),
-      gcmq                = require('gulp-group-css-media-queries'),
-      imageMin            = require('gulp-imagemin'),
-      pngquant            = require('imagemin-pngquant'),
-      plumber             = require('gulp-plumber');
+const gulp = require('gulp'),
+  sass = require('gulp-sass'),
+  less = require('gulp-less'),
+  concatJS = require('gulp-concat'),
+  pug = require('gulp-pug'),
+  autoprefixer = require('gulp-autoprefixer'),
+  cleanCSS = require('gulp-clean-css'),
+  rigger = require('gulp-rigger'),
+  browserSync = require('browser-sync'),
+  uglify = require('gulp-uglify'),
+  rename = require("gulp-rename"),
+  gcmq = require('gulp-group-css-media-queries'),
+  imageMin = require('gulp-imagemin'),
+  pngquant = require('imagemin-pngquant'),
+  plumber = require('gulp-plumber');
 
 gulp.task('pug', function buildHTML() {
   return gulp.src(pugPath + '/*.pug')
@@ -50,27 +50,27 @@ gulp.task('pug', function buildHTML() {
 
 if (preprocessor == 'scss') {
   gulp.task('style', function () {
-    return gulp.src( scssPath + '/style.scss')
-    .pipe(plumber())
-    .pipe(sass().on('error', sass.logError))
-    .pipe(autoprefixer({
+    return gulp.src(scssPath + '/style.scss')
+      .pipe(plumber())
+      .pipe(sass().on('error', sass.logError))
+      .pipe(autoprefixer({
         cascade: false
-    }))
-    .pipe(gulp.dest( cssPath ))
-    .pipe(browserSync.reload({stream:true}));
+      }))
+      .pipe(gulp.dest(cssPath))
+      .pipe(browserSync.reload({ stream: true }));
   });
 }
 
 else if (preprocessor == 'less') {
   gulp.task('style', function () {
-    return gulp.src( lessPath + '/style.less')
-    .pipe(plumber())
-    .pipe(less())
-    .pipe(autoprefixer({
+    return gulp.src(lessPath + '/style.less')
+      .pipe(plumber())
+      .pipe(less())
+      .pipe(autoprefixer({
         cascade: false
-    }))
-    .pipe(gulp.dest( cssPath ))
-    .pipe(browserSync.reload({stream:true}));
+      }))
+      .pipe(gulp.dest(cssPath))
+      .pipe(browserSync.reload({ stream: true }));
   });
 }
 
@@ -83,39 +83,39 @@ gulp.task('js', function () {
   }
 });
 
-gulp.task('browser-sync', function() {
-    browserSync({
-        server: {
-            baseDir: htmlPath
-        },
-        notify: true
-    });
+gulp.task('browser-sync', function () {
+  browserSync({
+    server: {
+      baseDir: htmlPath
+    },
+    notify: true
+  });
 });
 
 gulp.task('css-min', function () {
-  return gulp.src( cssPath + '/style.css')
-  .pipe(cleanCSS({
-    level : 2
-  }))
-  .pipe(rename({
-    suffix: '.min'
-  }))
-  .pipe(gulp.dest( cssPath ))
-  .pipe(browserSync.reload({stream: true}));
+  return gulp.src(cssPath + '/style.css')
+    .pipe(cleanCSS({
+      level: 2
+    }))
+    .pipe(rename({
+      suffix: '.min'
+    }))
+    .pipe(gulp.dest(cssPath))
+    .pipe(browserSync.reload({ stream: true }));
 });
 
 gulp.task('js-min', function () {
-  return gulp.src( jsPath + '/scripts.js')
-  .pipe(uglify())
-  .pipe(rename({
-    suffix: '.min'
-  }))
-  .pipe(gulp.dest( jsPath ))
-  .pipe(browserSync.reload({stream: true}));
+  return gulp.src(jsPath + '/scripts.js')
+    .pipe(uglify())
+    .pipe(rename({
+      suffix: '.min'
+    }))
+    .pipe(gulp.dest(jsPath))
+    .pipe(browserSync.reload({ stream: true }));
 });
 
 gulp.task('img-min', function () {
-  return gulp.src(imgPath + '/**/*' )
+  return gulp.src(imgPath + '/**/*')
     .pipe(imageMin([
       imageMin.gifsicle(),
       imageMin.mozjpeg(),
@@ -128,10 +128,10 @@ gulp.task('img-min', function () {
 });
 
 gulp.task('media-group', function () {
-    return gulp.src( cssPath + '/style.css')
+  return gulp.src(cssPath + '/style.css')
     .pipe(gcmq())
-    .pipe(gulp.dest( cssPath ))
-    .pipe(browserSync.reload({stream: true}));
+    .pipe(gulp.dest(cssPath))
+    .pipe(browserSync.reload({ stream: true }));
 });
 
 if (gulpVersion == '3') {
@@ -141,7 +141,14 @@ if (gulpVersion == '3') {
       browserSync.reload();
       done();
     });
-    gulp.watch(jsAppPath + '/**/*.js', ['js']);
+    if (jsOn) {
+      gulp.watch(jsAppPath + '/**/*.js', ['js']);
+    } else {
+      gulp.watch(jsPath + '/**/*.js', function reload(done) {
+        browserSync.reload();
+        done();
+      });
+    }
     gulp.watch(scssPath + '/**/*.scss', ['style']);
     gulp.watch(lessPath + '/**/*.less', ['style']);
   });
@@ -159,7 +166,14 @@ else if (gulpVersion == '4') {
       browserSync.reload();
       done();
     });
-    gulp.watch(jsAppPath + '/**/*.js', gulp.parallel('js'));
+    if (jsOn) {
+      gulp.watch(jsAppPath + '/**/*.js', gulp.parallel('js'));
+    } else {
+      gulp.watch(jsPath + '/**/*.js', function reload(done) {
+        browserSync.reload();
+        done();
+      });
+    }
     gulp.watch(scssPath + '/**/*.scss', gulp.parallel('style'));
     gulp.watch(lessPath + '/**/*.less', gulp.parallel('style'));
   });

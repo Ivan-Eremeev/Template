@@ -143,19 +143,19 @@ $(document).ready(function () {
 	// }
 	// tabs($('.js-tabs'));
 
-	// Аккордеон
+	// // Аккордеон
 	// function accordion() {
 	// 	if ($('.accordion').length) {
 	// 		$('.accordion').each(function () {
 	// 			var accordion = $(this),
 	// 				trigger = accordion.find('.accordion__trigger'),
-	// 				time = 500;
+	// 				time = 300;
 	// 			trigger.on('click', function () {
 	// 				var $thisTrigger = $(this),
 	// 					data = $thisTrigger.data('trigger');
 	// 				if (!$thisTrigger.hasClass('active')) {
 	// 					$thisTrigger.addClass('active');
-	// 					accordion.find('#' + data).slideDown(
+	// 					accordion.find('#' + data).stop().slideDown(
 	// 						time,
 	// 						function () {
 	// 							$(this).addClass('open')
@@ -163,7 +163,7 @@ $(document).ready(function () {
 	// 					);
 	// 				} else {
 	// 					$thisTrigger.removeClass('active');
-	// 					accordion.find('#' + data).slideUp(
+	// 					accordion.find('#' + data).stop().slideUp(
 	// 						time,
 	// 						function () {
 	// 							$(this).removeClass('open')
