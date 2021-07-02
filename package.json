@@ -19,7 +19,8 @@
     "gulp-rigger": "*",
     "gulp-sass": "*",
     "gulp-uglify": "*",
-    "imagemin-pngquant": "*"
+    "imagemin-pngquant": "*",
+    "sass": "*"
   },
   "dependencies": {},
   "browserslist": "last 5 version"
