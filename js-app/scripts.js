@@ -719,4 +719,30 @@ $(document).ready(function () {
 	// }
 	// JQuerySlider();
 
+	// // Смена положения блока при изменении ширины окна
+	// // function(блок, куда переместить, куда вернуть)
+	// function replace(block, to, from, mediaBreak) {
+	// 	function take() { // Переместить блок
+	// 		block.appendTo(to);
+	// 	}
+	// 	function takeRevers() { // Вернуть блок обратно
+	// 		block.appendTo(from);
+	// 	}
+	// 	if ($(window).width() < mediaBreak) { // условие на ширину окна
+	// 		take();
+	// 	} else {
+	// 		takeRevers();
+	// 	}
+	// 	$(window).resize(function () {
+	// 		if ($(window).width() < mediaBreak) { // условие на ширину окна
+	// 			take();
+	// 		} else {
+	// 			takeRevers();
+	// 		}
+	// 	})
+	// 	take();
+	// 	takeRevers();
+	// }
+	// replace($('.block'), $('#to'), $('#from'), breakLg)
+
 });

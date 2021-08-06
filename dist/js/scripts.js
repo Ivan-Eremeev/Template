@@ -144,55 +144,37 @@ $(document).ready(function () {
 	// tabs($('.js-tabs'));
 
 	// // Аккордеон
-	// function accordeon(accordeon, mobile) {
-	// 	var trigger = accordeon.find('.accordeon_trigger'),
-	// 			content = accordeon.find('.accordeon_content'),
-	// 			time = 300;
-	// 	if (!mobile) {
-	// 		mobile = false;
-	// 	};
-	// 	function contentDisplayNone() {
-	// 		if (mobile == true && $(window).width() < breakMd) {
-	// 			content.css({
-	// 				display: 'none'
-	// 			});
-	// 		}
-	// 		if (mobile == false) {
-	// 			content.css({
-	// 				display: 'none'
-	// 			});
-	// 		}
-	// 	};
-	// 	contentDisplayNone();
-	// 	$(window).resize(function() {
-	// 		contentDisplayNone();
-	// 	});
-	// 	trigger.on('click', function() {
-	// 		$this = $(this);
-	// 		if (mobile == true && $(window).width() < breakMd) {
-	// 			if (!$this.hasClass('active')) {
-	// 				trigger.removeClass('active');
-	// 				$this.addClass('active');
-	// 				content.stop().slideUp(time);
-	// 				$this.next('.accordeon_content').stop().slideDown(time).removeClass('hide');
-	// 			}else {
-	// 				$this.removeClass('active');
-	// 				$this.next('.accordeon_content').stop().slideUp(time).addClass('hide');
-	// 			}
-	// 		}
-	// 	});
-	// 	$(window).resize(function() {
-	// 		if (mobile == true && $(window).width() > breakMd) {
-	// 			trigger.removeClass('active');
-	// 			content.removeClass('hide')
-	// 				.attr('style', '');
-	// 		}
-	// 		else {
-	// 			content.addClass('hide')
-	// 		}
-	// 	});
-	// };
-	// accordeon();
+	// function accordion() {
+	// 	if ($('.accordion').length) {
+	// 		$('.accordion').each(function () {
+	// 			var accordion = $(this),
+	// 				trigger = accordion.find('.accordion__trigger'),
+	// 				time = 300;
+	// 			trigger.on('click', function () {
+	// 				var $thisTrigger = $(this),
+	// 					data = $thisTrigger.data('trigger');
+	// 				if (!$thisTrigger.hasClass('active')) {
+	// 					$thisTrigger.addClass('active');
+	// 					accordion.find('#' + data).stop().slideDown(
+	// 						time,
+	// 						function () {
+	// 							$(this).addClass('open')
+	// 						}
+	// 					);
+	// 				} else {
+	// 					$thisTrigger.removeClass('active');
+	// 					accordion.find('#' + data).stop().slideUp(
+	// 						time,
+	// 						function () {
+	// 							$(this).removeClass('open')
+	// 						}
+	// 					);
+	// 				}
+	// 			})
+	// 		})
+	// 	}
+	// }
+	// accordion();
 
 	// // Модальное окно
 	// function modal(modal) {
@@ -260,19 +242,23 @@ $(document).ready(function () {
 	// 			valTo = $this.data('val-to'),
 	// 			valDuration = $this.data('duration');
 	// 		$this.html(0);
+ //      gofunc();
 	// 		$(window).scroll(function () {
-	// 			scrollTop = $(window).scrollTop() + $(window).height();
-	// 			if (scrollTop > blockPosition && countNumberStatus) {
-	// 				$({ numberValue: valUp }).animate({ numberValue: valTo }, {
-	// 					duration: valDuration,
-	// 					easing: "swing",
-	// 					step: function (val) {
-	// 						$this.html(Math.ceil(val));
-	// 					}
-	// 				});
-	// 				countNumberStatus = false;
-	// 			}
+ //        gofunc();
 	// 		});
+ //      function gofunc() {
+ //        scrollTop = $(window).scrollTop() + $(window).height();
+ //        if (scrollTop > blockPosition && countNumberStatus) {
+ //          $({ numberValue: valUp }).animate({ numberValue: valTo }, {
+ //            duration: valDuration,
+ //            easing: "swing",
+ //            step: function (val) {
+ //              $this.html(Math.ceil(val));
+ //            }
+ //          });
+ //          countNumberStatus = false;
+ //        }
+ //      }
 	// 	});
 	// };
 	// countNumber($(".count-number"));
@@ -623,5 +609,140 @@ $(document).ready(function () {
 	// 	})
 	// }
 	// tooltipBootstrapInit();
+
+	// // Калькулятор цены
+	// $('#quantity').on('input keyup', (function () {
+	// 	calcPrice();
+	// }));
+	// function calcPrice() {
+	// 	var price = parseInt($('#priceOne').text()),
+	// 		quantity = parseInt($('#quantity').val()),
+	// 		result = $('.resultPrice');
+	// 	if (isNaN(quantity)) {
+	// 		quantity = 1;
+	// 	}
+	// 	var resultPrice = numericFormat(price * quantity);
+	// 	result.text(resultPrice + ' руб.');
+	// }
+	// calcPrice();
+
+	// // Делитель цены
+	// function numericFormat(value, decimal, thousand) {
+	// 	if (!decimal) decimal = ' ';
+	// 	if (!thousand) thousand = '.';
+	// 	var parts = value.toString().split('.');
+	// 	return parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, decimal) + (parts[1] ? thousand + parts[1] : '');
+	// }
+
+	// // Скрыть определенное кол-во пунктов списка и показывать при нажатии на кнопку "показать больше"
+	// // Добавить класс списку .js-hide-list-items
+	// // и data-value="" - количество элементов которыеы нужно показывать
+	// // Добавить пункт в конец списка с классом .js-hide-list-all (будет открывать список)
+	// function hideListItems() {
+	// 	$('.js-hide-list-items').each(function () {
+	// 		var $this = $(this),
+	// 			items = $this.find('li'),
+	// 			btnAll = $this.find('.js-hide-list-all'),
+	// 			valueItem = $this.data('value'),
+	// 			itemTarget = items.filter(function () {
+	// 				return $(this).index() > valueItem
+	// 			});
+	// 		if ((items.length + 1) > valueItem) { // если кол-во элементов превышает указанное в data-valueItem="", то скрываем остальные
+	// 			itemTarget.hide();
+	// 			btnAll.show();
+	// 			btnAll.on('click', function () { // клик по кнопке "показать еще" (появляются все скрытые пункты списка)
+	// 				itemTarget.show();
+	// 				btnAll.hide();
+	// 			})
+	// 		}
+	// 	})
+	// }
+	// hideListItems();
+
+	// // Выпадайки при клике по кнопке
+	// // Задать блокам выпадайкам .js-drop и айдишник совпадающий с data-drop="" в кнопке для этого блока
+	// // Задать кнопкам .js-drop-btn и data-drop="" с айдишником блока выпадайки
+	// function DropBlock(drop, button) {
+	// 	button.on('click', function () { // клик по кнопке
+	// 		var $this = $(this),
+	// 			data = $this.data('drop');
+	// 		if (!$this.hasClass('active')) { // если имеет класс .active скрываем все выпадайки и открываем только относящуюся к кнопке
+	// 			drop.removeClass('open');
+	// 			button.removeClass('active');
+	// 			$this.addClass('active');
+	// 			$('#' + data).addClass('open');
+	// 		} else { // если не имеет класс .active скрываем все выпадайки
+	// 			button.removeClass('active');
+	// 			drop.removeClass('open');
+	// 		}
+	// 	})
+	// 	$(document).mouseup(function (e) { // клик по любому месту страницы вне блока (скрываем все выпадайки)
+	// 		if (!drop.is(e.target)
+	// 			&& drop.has(e.target).length === 0
+	// 			&& !button.is(e.target)
+	// 			&& button.has(e.target).length === 0) {
+	// 			drop.removeClass('open');
+	// 			button.removeClass('active');
+	// 		}
+	// 	});
+	// }
+	// DropBlock($('.js-drop'), $('.js-drop-btn'));
+
+	// // JQuery Slider // Ползунок
+	// function JQuerySlider() {
+	// 	if ($('.jquery-slider').length) {
+	// 		$('.jquery-slider').each(function () {
+	// 			var $this = $(this),
+	// 				JQuerySlider = $this.find('.jquery-slider__slider'),
+	// 				input = $this.find('input'),
+	// 				valMin = $this.data('min'),
+	// 				valMax = $this.data('max'),
+	// 				valNow = $this.data('now');
+	// 			JQuerySlider.slider({
+	// 				range: "min",
+	// 				min: valMin,
+	// 				max: valMax,
+	// 				value: valNow,
+	// 				create: function () {
+	// 					input.val($(this).slider("value"));
+	// 				},
+	// 				slide: function (event, ui) {
+	// 					input.val(ui.value);
+	// 				},
+	// 			});
+	// 			input.on('input keyup', (function () {
+	// 				var valInput = $(this).val();
+	// 				JQuerySlider.slider("value", valInput);
+	// 			}));
+	// 		})
+	// 	}
+	// }
+	// JQuerySlider();
+
+	// // Смена положения блока при изменении ширины окна
+	// // function(блок, куда переместить, куда вернуть)
+	// function replace(block, to, from, mediaBreak) {
+	// 	function take() { // Переместить блок
+	// 		block.appendTo(to);
+	// 	}
+	// 	function takeRevers() { // Вернуть блок обратно
+	// 		block.appendTo(from);
+	// 	}
+	// 	if ($(window).width() < mediaBreak) { // условие на ширину окна
+	// 		take();
+	// 	} else {
+	// 		takeRevers();
+	// 	}
+	// 	$(window).resize(function () {
+	// 		if ($(window).width() < mediaBreak) { // условие на ширину окна
+	// 			take();
+	// 		} else {
+	// 			takeRevers();
+	// 		}
+	// 	})
+	// 	take();
+	// 	takeRevers();
+	// }
+	// replace($('.block'), $('#to'), $('#from'), breakLg)
 
 });
