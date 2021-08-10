@@ -722,27 +722,19 @@ $(document).ready(function () {
 	// // Смена положения блока при изменении ширины окна
 	// // function(блок, куда переместить, куда вернуть)
 	// function replace(block, to, from, mediaBreak) {
-	// 	function take() { // Переместить блок
-	// 		block.appendTo(to);
-	// 	}
-	// 	function takeRevers() { // Вернуть блок обратно
-	// 		block.appendTo(from);
-	// 	}
-	// 	if ($(window).width() < mediaBreak) { // условие на ширину окна
-	// 		take();
-	// 	} else {
-	// 		takeRevers();
-	// 	}
-	// 	$(window).resize(function () {
-	// 		if ($(window).width() < mediaBreak) { // условие на ширину окна
-	// 			take();
+	// 	function replaceToggle() {
+	// 		if ($(window).width() <= mediaBreak) { // условие на ширину окна
+	// 			block.appendTo(to); // Переместить блок
 	// 		} else {
-	// 			takeRevers();
+	// 			block.appendTo(from); // Вернуть блок обратно
 	// 		}
+	// 	}
+	// 	replaceToggle();
+	// 	$(window).resize(function () {
+	// 		replaceToggle();
 	// 	})
-	// 	take();
-	// 	takeRevers();
+
 	// }
-	// replace($('.block'), $('#to'), $('#from'), breakLg)
+	// replace($('#block'), $('#to'), $('#from'), breakLg);
 
 });
