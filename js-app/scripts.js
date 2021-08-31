@@ -662,38 +662,31 @@ $(document).ready(function () {
 	// // Выпадайки при клике по кнопке
 	// // Задать блокам выпадайкам айдишник совпадающий с data-drop="" в кнопке для этого блока
 	// // Задать кнопкам .js-drop-btn и data-drop="" с айдишником блока выпадайки
-	// function DropBlock(button) {
-	// 	var dropThis = [], // создаем массивы для кнопок и выпадаек
-	// 		thisBtn = [];
-	// 	button.on('click', function (e) { // клик по кнопке
-	// 		e.preventDefault();
-	// 		if (!$(this).hasClass('active')) { // проверка на класс. добавляем классы и элементы в массивы
-	// 			thisBtn.push($(this));
-	// 			dropThis.push($('#' + $(this).data('drop')));
-	// 			thisBtn[thisBtn.length - 1].addClass('active');
-	// 			dropThis[dropThis.length - 1].addClass('open');
-	// 		} else { // проверка на класс. удаляем классы и последние элементы из массивов
-	// 			thisBtn[thisBtn.length - 1].removeClass('active');
-	// 			dropThis[dropThis.length - 1].removeClass('open');
-	// 			thisBtn.pop();
-	// 			dropThis.pop();
-	// 		}
-	// 	})
-	// 	$(document).mouseup(function (e) { // клик по любому месту страницы вне блока. удаляем классы и последние элементы из массивов
-	// 		if (dropThis.length && thisBtn.length) {
-	// 			if (!dropThis[dropThis.length - 1].is(e.target)
-	// 				&& dropThis[dropThis.length - 1].has(e.target).length === 0
-	// 				&& !thisBtn[thisBtn.length - 1].is(e.target)
-	// 				&& thisBtn[thisBtn.length - 1].has(e.target).length === 0) {
-	// 				thisBtn[thisBtn.length - 1].removeClass('active');
-	// 				dropThis[dropThis.length - 1].removeClass('open');
-	// 				thisBtn.pop();
-	// 				dropThis.pop();
+	// function dropBlock(btn) {
+	// 	var $this = undefined,
+	// 			drop = undefined,
+	// 			close = $('.js-drop-close');
+	// 	btn.on('click', function () {
+	// 		$this = $(this);
+	// 		drop = $('#' + $this.data('drop'));
+	// 		$this.toggleClass('is-active');
+	// 		drop.toggleClass('open');
+	// 		$(document).mouseup(function (e) {
+	// 			if (!$this.is(e.target)
+	// 				&& $this.has(e.target).length === 0
+	// 				&& !drop.is(e.target)
+	// 				&& drop.has(e.target).length === 0) {
+	// 				$this.removeClass('is-active');
+	// 				drop.removeClass('open');
 	// 			}
-	// 		}
-	// 	});
+	// 		});
+	// 	})
+	// 	close.on('click', function () {
+	// 		$('[data-drop="' + $(this).data('drop') +'"]').removeClass('is-active');
+	// 		$('#' + $(this).data('drop')).removeClass('open');
+	// 	})
 	// }
-	// DropBlock($('.js-drop-btn'));
+	// dropBlock($('.js-drop-btn'));
 
 	// // JQuery Slider // Ползунок
 	// function JQuerySlider() {
