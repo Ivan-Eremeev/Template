@@ -660,33 +660,33 @@ $(document).ready(function () {
 	// hideListItems();
 
 	// // Выпадайки при клике по кнопке
-	// // Задать блокам выпадайкам .js-drop и айдишник совпадающий с data-drop="" в кнопке для этого блока
+	// // Задать блокам выпадайкам айдишник совпадающий с data-drop="" в кнопке для этого блока
 	// // Задать кнопкам .js-drop-btn и data-drop="" с айдишником блока выпадайки
-	// function DropBlock(drop, button) {
-	// 	button.on('click', function () { // клик по кнопке
-	// 		var $this = $(this),
-	// 			data = $this.data('drop');
-	// 		if (!$this.hasClass('active')) { // если имеет класс .active скрываем все выпадайки и открываем только относящуюся к кнопке
-	// 			drop.removeClass('open');
-	// 			button.removeClass('active');
-	// 			$this.addClass('active');
-	// 			$('#' + data).addClass('open');
-	// 		} else { // если не имеет класс .active скрываем все выпадайки
-	// 			button.removeClass('active');
-	// 			drop.removeClass('open');
-	// 		}
+	// function dropBlock(btn) {
+	// 	var $this = undefined,
+	// 			drop = undefined,
+	// 			close = $('.js-drop-close');
+	// 	btn.on('click', function () {
+	// 		$this = $(this);
+	// 		drop = $('#' + $this.data('drop'));
+	// 		$this.toggleClass('is-active');
+	// 		drop.toggleClass('open');
+	// 		$(document).mouseup(function (e) {
+	// 			if (!$this.is(e.target)
+	// 				&& $this.has(e.target).length === 0
+	// 				&& !drop.is(e.target)
+	// 				&& drop.has(e.target).length === 0) {
+	// 				$this.removeClass('is-active');
+	// 				drop.removeClass('open');
+	// 			}
+	// 		});
 	// 	})
-	// 	$(document).mouseup(function (e) { // клик по любому месту страницы вне блока (скрываем все выпадайки)
-	// 		if (!drop.is(e.target)
-	// 			&& drop.has(e.target).length === 0
-	// 			&& !button.is(e.target)
-	// 			&& button.has(e.target).length === 0) {
-	// 			drop.removeClass('open');
-	// 			button.removeClass('active');
-	// 		}
-	// 	});
+	// 	close.on('click', function () {
+	// 		$('[data-drop="' + $(this).data('drop') +'"]').removeClass('is-active');
+	// 		$('#' + $(this).data('drop')).removeClass('open');
+	// 	})
 	// }
-	// DropBlock($('.js-drop'), $('.js-drop-btn'));
+	// dropBlock($('.js-drop-btn'));
 
 	// // JQuery Slider // Ползунок
 	// function JQuerySlider() {

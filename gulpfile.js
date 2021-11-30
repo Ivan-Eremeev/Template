@@ -52,7 +52,7 @@ if (preprocessor == 'scss') {
   gulp.task('style', function () {
     return gulp.src(scssPath + '/style.scss')
       .pipe(plumber())
-      .pipe(sass().on('error', sass.logError))
+      .pipe(sass({ outputStyle: 'expanded' }).on('error', sass.logError))
       .pipe(autoprefixer({
         cascade: false
       }))
