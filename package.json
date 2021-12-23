@@ -10,7 +10,7 @@
     "gulp-concat": "*",
     "gulp-concat-css": "*",
     "gulp-group-css-media-queries": "*",
-    "gulp-imagemin": "*",
+    "gulp-imagemin": "7.1.0",
     "gulp-less": "*",
     "gulp-minify": "*",
     "gulp-plumber": "*",
