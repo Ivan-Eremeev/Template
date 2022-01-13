@@ -3,6 +3,7 @@
 // "gulp mg" - группировка всех медиазапросов в конец файла style.css.
 // "gulp min" - сжимает js, css (создает минимизированные файлы script.min.js и style.min.css).
 // "gulp img-min" - сжимает изображения
+// "gulp webp" - конвертирует изображения jpeg, jpg, png в формат webp
 
 // * Настройки *
 const preprocessor = 'scss', // Выбрать препроцессор для стилей (scss или less)
@@ -117,6 +118,7 @@ gulp.task('js-min', function () {
 
 gulp.task('img-min', function () {
   return gulp.src(imgPath + '/**/*')
+    .pipe(gulp.dest(imgPath + '-full'))
     .pipe(imageMin([
       imageMin.gifsicle(),
       imageMin.mozjpeg(),
@@ -125,7 +127,7 @@ gulp.task('img-min', function () {
     ], {
       verbose: true
     }))
-    .pipe(gulp.dest(imgPath + '/min'));
+    .pipe(gulp.dest(imgPath));
 });
 
 gulp.task('mg', function () {
@@ -157,9 +159,9 @@ gulp.task('watch', function () {
 });
 
 gulp.task('webp', () =>
-  gulp.src(imgPath + '/**/*.*')
+  gulp.src(imgPath + '/**/*.+(jpg|png|jpeg)')
     .pipe(webp())
-    .pipe(gulp.dest(imgPath + '/webp'))
+    .pipe(gulp.dest(imgPath))
 );
 
 gulp.task('default', gulp.parallel('browser-sync', 'pug', 'js', 'style', 'watch'));
