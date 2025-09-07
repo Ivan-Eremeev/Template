@@ -37,6 +37,23 @@ $break_xs: 500px;
 // ) !default;
 // $gutter: $grid-gutter-width; // Переменная для задания отступов равных междуколоночным
 
+$gutters: (
+  0: 0,
+  1: $grid-gutter-width * 1,
+  2: $grid-gutter-width * 2,
+  3: $grid-gutter-width * 3,
+  4: $grid-gutter-width * 4,
+  5: $grid-gutter-width * 5,
+);
+$spacers: (
+  0: 0,
+  1: $grid-gutter-width * 1,
+  2: $grid-gutter-width * 2,
+  3: $grid-gutter-width * 3,
+  4: $grid-gutter-width * 4,
+  5: $grid-gutter-width * 5,
+);
+
 @import 'bootstrap/bootstrap'; // Подключение бутстрап
 
 // Шрифты
