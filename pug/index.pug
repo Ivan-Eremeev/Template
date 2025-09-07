@@ -1,0 +1,23 @@
+extends core/base.pug
+
+block title 
+  title Навигация по страницам
+
+block content
+
+  .page 
+
+    include core/header.pug
+
+    .content 
+
+      .navpage 
+        .container
+          h1 Навигация по страницам
+          ul 
+            li 
+              a(href="template.html") Шаблон
+            li 
+              a(href="pagepiling.html") Поэкранный скролл
+
+    include core/footer.pug

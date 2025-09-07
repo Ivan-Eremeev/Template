@@ -1,46 +1,44 @@
+import gulp from 'gulp';
+import pug from 'gulp-pug';
+import dartSass from 'sass';
+import gulpSass from 'gulp-sass';
+const sass = gulpSass(dartSass);
+import plumber from 'gulp-plumber';
+import autoprefixer from 'gulp-autoprefixer';
+import browserSync from 'browser-sync';
+import cleanCSS from 'gulp-clean-css';
+import uglify from 'gulp-uglify';
+import rename from 'gulp-rename';
+import gcmq from 'gulp-group-css-media-queries';
+import imagemin, { gifsicle, mozjpeg, optipng, svgo } from 'gulp-imagemin';
+import webp from 'gulp-webp';
+import svgSprite from 'gulp-svg-sprite';
+import ttf2woff2 from 'gulp-ttftowoff2';
+import ttf2woff from 'gulp-ttf2woff';
+
 // * Команды *
 // "gulp" - запуск gulp.
-// "gulp mg" - группировка всех медиазапросов в конец файла style.css.
-// "gulp min" - сжимает js, css (создает минимизированные файлы script.min.js и style.min.css).
+// "gulp mg" - группировка всех медиазапросов в конец файла main.css.
+// "gulp min" - сжимает js, css (создает минимизированные файлы script.min.js и main.min.css).
 // "gulp img-min" - сжимает изображения
 // "gulp webp" - конвертирует изображения jpeg, jpg, png в формат webp
+// "gulp svgsprite" - собирает все svg из папки svg_icons в один svg спрайт
+// "gulp fonts" - конвертирует ttf шрифты в woff и woff2
 
 // * Настройки *
-const preprocessor = 'scss', // Выбрать препроцессор для стилей (scss или less)
-  jsOn = true, // Нужно ли собирать js (инклюды файлов)
-  html = false; // Нужно ли делать перезагрузку браузера при изменении html файлов (если не используется pug)
+const html = false; // Нужно ли делать перезагрузку браузера при изменении html файлов (если не используется pug)
+const server = false; // Если используется OpenServer и php
+const proxy = 'http://test/'; // Адрес для liveserver
 
 // * Пути к папкам относительно корня проекта *
 const scssPath = 'scss', // Scss
-  lessPath = 'less', // Less
-  cssPath = 'dist/css', // Css
+  cssPath = 'css', // Css
   pugPath = 'pug', // Pug
-  htmlPath = 'dist', // Html
-  jsAppPath = 'js-app', // Js до сборки
-  jsPath = 'dist/js', // Js после сборки
-  imgPath = 'dist/img'; // Изображения
+  htmlPath = './', // Html
+  jsPath = 'js', // Js
+  imgPath = 'img'; // Изображения
 
-
-
-// Код
-const gulp = require('gulp'),
-  sass = require('gulp-sass')(require('sass')),
-  less = require('gulp-less'),
-  concatJS = require('gulp-concat'),
-  pug = require('gulp-pug'),
-  autoprefixer = require('gulp-autoprefixer'),
-  cleanCSS = require('gulp-clean-css'),
-  rigger = require('gulp-rigger'),
-  browserSync = require('browser-sync'),
-  uglify = require('gulp-uglify'),
-  rename = require("gulp-rename"),
-  gcmq = require('gulp-group-css-media-queries'),
-  imageMin = require('gulp-imagemin'),
-  pngquant = require('imagemin-pngquant'),
-  plumber = require('gulp-plumber'),
-  webp = require('gulp-webp');
-
-gulp.task('pug', function () {
+gulp.task('pugBuild', function () {
   return gulp.src(pugPath + '/*.pug')
     .pipe(plumber())
     .pipe(pug({
@@ -50,60 +48,43 @@ gulp.task('pug', function () {
     .pipe(browserSync.reload({ stream: true }));
 });
 
-if (preprocessor == 'scss') {
-  gulp.task('style', function () {
-    return gulp.src(scssPath + '/style.scss')
-      .pipe(plumber())
-      .pipe(sass({ outputStyle: 'expanded' }).on('error', sass.logError))
-      .pipe(autoprefixer({
-        cascade: false
-      }))
-      .pipe(gulp.dest(cssPath))
-      .pipe(browserSync.reload({ stream: true }));
-  });
-}
-
-else if (preprocessor == 'less') {
-  gulp.task('style', function () {
-    return gulp.src(lessPath + '/style.less')
-      .pipe(plumber())
-      .pipe(less())
-      .pipe(autoprefixer({
-        cascade: false
-      }))
-      .pipe(gulp.dest(cssPath))
-      .pipe(browserSync.reload({ stream: true }));
-  });
-}
-
-gulp.task('js', function () {
-  if (jsOn) {
-    return gulp.src(jsAppPath + '/scripts.js')
-      .pipe(rigger())
-      .pipe(gulp.dest(jsPath))
-      .pipe(browserSync.reload({ stream: true }));
-  }
+gulp.task('styleBuild', function () {
+  return gulp.src(scssPath + '/*.scss')
+    .pipe(plumber())
+    .pipe(sass({ outputStyle: 'expanded', quietDeps: true, silenceDeprecations: ['import'] }).on('error', sass.logError))
+    .pipe(autoprefixer({
+      cascade: false
+    }))
+    .pipe(gulp.dest(cssPath))
+    .pipe(browserSync.reload({ stream: true }));
 });
 
-gulp.task('browser-sync', function () {
-  browserSync({
-    server: {
-      baseDir: htmlPath
-    },
-    notify: true
+if (!server) {
+  gulp.task('browser-sync', function () {
+    browserSync.init({
+      server: {
+        baseDir: htmlPath,
+      },
+      notify: true,
+    });
   });
-});
+} else {
+  gulp.task('browser-sync', function () {
+    browserSync.init({
+      proxy: proxy,
+    });
+  });
+}
 
 gulp.task('css-min', function () {
-  return gulp.src(cssPath + '/style.css')
+  return gulp.src(cssPath + '/main.css')
     .pipe(cleanCSS({
       level: 2
     }))
     .pipe(rename({
       suffix: '.min'
     }))
-    .pipe(gulp.dest(cssPath))
-    .pipe(browserSync.reload({ stream: true }));
+    .pipe(gulp.dest(cssPath));
 });
 
 gulp.task('js-min', function () {
@@ -112,50 +93,102 @@ gulp.task('js-min', function () {
     .pipe(rename({
       suffix: '.min'
     }))
-    .pipe(gulp.dest(jsPath))
-    .pipe(browserSync.reload({ stream: true }));
+    .pipe(gulp.dest(jsPath));
 });
 
 gulp.task('img-min', function () {
-  return gulp.src(imgPath + '/**/*')
-    .pipe(gulp.dest(imgPath + '-full'))
-    .pipe(imageMin([
-      imageMin.gifsicle(),
-      imageMin.mozjpeg(),
-      imageMin.svgo(),
-      pngquant()
-    ], {
-      verbose: true
-    }))
+  return gulp.src([imgPath + '/**/*', '!' + imgPath + '/svg_icons/*'])
+    .pipe(imagemin([
+      gifsicle({ interlaced: true }),
+      mozjpeg({ quality: 75, progressive: true }),
+      optipng({ optimizationLevel: 5 }),
+      svgo({
+        plugins: [
+          {
+            name: 'removeViewBox',
+            active: true
+          },
+          {
+            name: 'cleanupIDs',
+            active: false
+          }
+        ]
+      })
+    ]))
     .pipe(gulp.dest(imgPath));
 });
 
 gulp.task('mg', function () {
-  return gulp.src(cssPath + '/style.css')
+  return gulp.src(cssPath + '/main.css')
     .pipe(gcmq())
-    .pipe(gulp.dest(cssPath))
-    .pipe(browserSync.reload({ stream: true }));
+    .pipe(gulp.dest(cssPath));
 });
 
+gulp.task('svgsprite', function () {
+  return gulp.src(imgPath + '/svg_icons/*.svg')
+    .pipe(svgSprite({
+      shape: {
+        dimension: {
+          maxWidth: 500,
+          maxHeight: 500
+        },
+        spacing: {
+          padding: 0
+        },
+        transform: [{
+          svgo: {
+            plugins: [
+              {
+                name: "removeAttrs",
+                params: {
+                  attrs: "(fill|stroke|style)"
+                }
+              },
+              {
+                name: 'preset-default',
+                params: {
+                  removeViewBox: false,
+                  removeUnusedNS: false,
+                  removeUselessStrokeAndFill: true,
+                  cleanupIDs: false,
+                  removeComments: true,
+                  removeEmptyAttrs: true,
+                  removeEmptyText: true,
+                  collapseGroups: true,
+                }
+              }
+            ]
+          }
+        }]
+      },
+      mode: {
+        symbol: {
+          dest: '.',
+          sprite: 'sprite.svg'
+        }
+      }
+    })).on('error', function (error) { console.log(error); })
+    .pipe(gulp.dest(imgPath));
+});
 
 gulp.task('watch', function () {
-  gulp.watch(pugPath + '/**/*.pug', gulp.parallel('pug'));
+  gulp.watch(pugPath + '/**/*.pug', gulp.parallel('pugBuild'));
   if (html) {
-    gulp.watch(htmlPath + '/**/*.html', function reload(done) {
+    gulp.watch(htmlPath + '**/*.html', function reload(done) {
       browserSync.reload();
       done();
     });
   }
-  if (jsOn) {
-    gulp.watch(jsAppPath + '/**/*.js', gulp.parallel('js'));
-  } else {
-    gulp.watch(jsPath + '/**/*.js', function reload(done) {
-      browserSync.reload();
-      done();
-    });
-  }
-  gulp.watch(scssPath + '/**/*.scss', gulp.parallel('style'));
-  gulp.watch(lessPath + '/**/*.less', gulp.parallel('style'));
+  gulp.watch(jsPath + '/**/*.js', function reload(done) {
+    browserSync.reload();
+    done();
+  });
+  gulp.watch('**/*.php', function reload(done) {
+    browserSync.reload();
+    done();
+  });
+  gulp.watch(scssPath + '/**/*.scss', gulp.parallel('styleBuild'));
+  gulp.watch(imgPath + '/svg_icons/*.svg', gulp.parallel('svgsprite'));
 });
 
 gulp.task('webp', () =>
@@ -164,6 +197,27 @@ gulp.task('webp', () =>
     .pipe(gulp.dest(imgPath))
 );
 
-gulp.task('default', gulp.parallel('browser-sync', 'pug', 'js', 'style', 'watch'));
+gulp.task('ttf2woff2', function () {
+  return gulp.src(['fonts/**/*.ttf'], {
+      encoding: false, // Important!
+      removeBOM: false,
+    })
+    .pipe(ttf2woff2())
+    .pipe(gulp.dest('fonts'));
+});
+
+gulp.task('ttf2woff', function () {
+  return gulp.src(['fonts/**/*.ttf'], {
+    encoding: false, // Important!
+    removeBOM: false,
+  })
+    .pipe(ttf2woff())
+    .pipe(gulp.dest('fonts'));
+});
+
+
+gulp.task('fonts', gulp.parallel('ttf2woff', 'ttf2woff2'));
+
+gulp.task('default', gulp.parallel('browser-sync', 'pugBuild', 'styleBuild', 'svgsprite', 'watch'));
 
 gulp.task('min', gulp.parallel('css-min', 'js-min'));

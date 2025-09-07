@@ -1,0 +1,53 @@
+/* header */
+.header { 
+  width: 100%;
+  padding: 10px 0;
+  background-color: #fff;
+  z-index: 10;
+  position: absolute;
+  top: 0;
+  left: 0;
+  &__container {
+    display: flex;
+    align-items: center;
+  }
+  &__logo {
+    display: block;
+    max-width: 200px; 
+    margin-right: 50px;
+  }
+  &__hamburger {
+    display: none;
+  }
+  @include media-breakpoint-down(md) {
+    &__hamburger {
+      display: block;
+      padding-right: 0;
+      margin-left: auto;
+      .hamburger-box {
+        display: block;
+      }
+    }
+  }
+}
+
+// stiky menu
+#headerSticky {
+  &.sticky {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+    animation: showStyky 0.5s;
+  }
+}
+@keyframes showStyky {
+  0% {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(0)
+  }
+}
+/* /header */

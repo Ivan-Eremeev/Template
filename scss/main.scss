@@ -1,0 +1,32 @@
+@import 'mixins/mixins';
+
+@include reset(); // Сброс стилей
+
+@import '_variables'; // Кастомные переменные
+
+// @import 'mixingrid/mixingrid'; // Подключение моей сетки
+
+@import 'bootstrap/bootstrap'; // Подключение бутстрап
+
+// Шрифты
+// @include font-face("EastAP", "../fonts/EastAP/EastAP", bold, italic);
+
+// Цвета
+// $black: #000;
+
+// Подключение файлов
+@import 'blocks/settings';
+@import 'hamburgers/hamburgers';
+@import 'blocks/template';
+@import 'blocks/popup';
+@import 'blocks/tabs';
+@import 'blocks/accordion';
+@import 'blocks/scrollup';
+@import 'blocks/counter';
+@import 'blocks/swiper-custom';
+@import 'blocks/pagination';
+@import 'blocks/custom-tooltip';
+
+@import 'blocks/header';
+@import 'blocks/footer';
+@import 'blocks/menu';
