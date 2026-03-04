@@ -9,24 +9,27 @@
 @import 'bootstrap/bootstrap'; // Подключение бутстрап
 
 // Шрифты
-// @include font-face("EastAP", "../fonts/EastAP/EastAP", bold, italic);
+// @include font-face("EastAP", "../fonts/EastAP/EastAP", bold, italic, woff2 woff ttf);
 
 // Цвета
 // $black: #000;
 
 // Подключение файлов
-@import 'blocks/settings';
+@import 'settings';
 @import 'hamburgers/hamburgers';
-@import 'blocks/template';
-@import 'blocks/popup';
-@import 'blocks/tabs';
-@import 'blocks/accordion';
-@import 'blocks/scrollup';
-@import 'blocks/counter';
-@import 'blocks/swiper-custom';
-@import 'blocks/pagination';
-@import 'blocks/custom-tooltip';
 
-@import 'blocks/header';
-@import 'blocks/footer';
+@import 'elements/popup';
+@import 'elements/tabs';
+@import 'elements/accordion';
+@import 'elements/scrollup';
+@import 'elements/counter';
+@import 'elements/swiper-custom';
+@import 'elements/pagination';
+@import 'elements/custom-tooltip';
+@import 'elements/my-btn';
+
+@import 'core/template';
+@import 'core/header';
+@import 'core/footer';
+
 @import 'blocks/menu';

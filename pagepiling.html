@@ -26,6 +26,8 @@
 		<link rel="stylesheet" href="css/plugins/nouislider.min.css">
 		<!-- Файл стилей-->
 		<link rel="stylesheet" href="css/main.css">
+		<!-- Кастомизируемый селект-->
+		<link rel="stylesheet" href="css/plugins/choices.min.css">
 	</head>
 	<body> 
 		<!-- Поэкранный скролл-->
@@ -35,22 +37,22 @@
 			<div class="container"> 
 				<div class="header__container"> <a class="header__logo" href="#"> <img src="img/logo.svg" alt=""></a>
 					<!-- menu-->
-					<div class="menu">
+					<div class="menu" id="mainMenu">
 						<div class="menu__head"> 
-							<div class="menu__close"> </div>
+							<div class="menu__close" id="mainMenuClose"></div>
 						</div>
 						<div class="menu__body"> 
 							<nav class="menu__nav"> 
 								<ul class="menu__list"> 
-									<li class="menu__item"> <a class="menu__link" href="#">Пункт1</a></li>
-									<li class="menu__item"> <a class="menu__link" href="#">Пункт2</a></li>
-									<li class="menu__item"> <a class="menu__link" href="#">Пункт3</a></li>
+									<li class="menu__item" data-menu="item"><a class="menu__link" href="#">Пункт1</a></li>
+									<li class="menu__item" data-menu="item"><a class="menu__link" href="#">Пункт2</a></li>
+									<li class="menu__item" data-menu="item"><a class="menu__link" href="#">Пункт3</a></li>
 								</ul>
 							</nav>
 						</div>
 					</div>
 					<!-- /menu-->
-					<div class="header__hamburger hamburger hamburger--squeeze">
+					<div class="header__hamburger hamburger hamburger--squeeze" id="mainMenuBtn">
 						<div class="hamburger-box"> 
 							<div class="hamburger-inner"> </div>
 						</div>
@@ -114,5 +116,7 @@
 		<script src="https://api-maps.yandex.ru/2.1/?apikey=b0f4ce37-e8f2-4b11-8122-fbbc4847fbbf&amp;lang=ru_RU"></script>
 		<!-- Файл скриптов-->
 		<script src="js/scripts.js"></script>
+		<!-- Кастомизируемый селект-->
+		<script src="js/plugins/choices.min.js"> </script>
 	</body>
 </html>

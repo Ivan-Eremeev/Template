@@ -1,7 +1,7 @@
 extends core/base.pug
 
 block title 
-  title Навигация по страницам
+  title Главная
 
 block content
 
@@ -11,13 +11,7 @@ block content
 
     .content 
 
-      .navpage 
-        .container
-          h1 Навигация по страницам
-          ul 
-            li 
-              a(href="template.html") Шаблон
-            li 
-              a(href="pagepiling.html") Поэкранный скролл
+      .container
+        a(href="pagenav.html") Навигация по страницам
 
     include core/footer.pug

@@ -7566,97 +7566,6 @@ body.lock {
   transition: bottom 0.075s ease, transform 0.075s 0.12s cubic-bezier(0.215, 0.61, 0.355, 1), -webkit-transform 0.075s 0.12s cubic-bezier(0.215, 0.61, 0.355, 1);
 }
 
-/* template */
-.template-block {
-  padding: 50px 0;
-}
-.template-block .swiper__slider {
-  overflow: hidden;
-  position: relative;
-}
-
-.template-block__title {
-  font-size: 20px;
-  font-weight: bold;
-  margin-bottom: 20px;
-}
-
-.aos {
-  height: 200px;
-  background-color: green;
-}
-
-.autosize {
-  width: 100%;
-  height: 100px;
-  resize: none;
-}
-
-.pagepiling__block {
-  padding: 100px 0;
-}
-.pagepiling__block--1 {
-  background-color: red;
-}
-.pagepiling__block--2 {
-  background-color: green;
-}
-.pagepiling__block--3 {
-  background-color: blue;
-}
-.pagepiling__block--4 {
-  background-color: purple;
-}
-
-.jquery-scrollbar .scrollbar-inner {
-  max-height: 100px;
-}
-.jquery-scrollbar__content {
-  padding-right: 20px;
-}
-
-.progress-1::part(base) {
-  width: 200px;
-  height: auto;
-}
-
-.progress-1::part(circle) {
-  stroke: hsl(39, 100%, 85%);
-  fill: #999;
-}
-
-.progress-1::part(value) {
-  stroke: hsl(39, 100%, 50%);
-}
-
-.progress-1::part(text) {
-  fill: hsl(39, 100%, 50%);
-}
-
-.progress-2::part(base) {
-  width: 200px;
-  height: auto;
-}
-
-.progress-2::part(circle) {
-  stroke-width: 6px;
-  stroke: #999;
-}
-
-.progress-2::part(value) {
-  stroke: green;
-  stroke-dasharray: 4 1;
-}
-
-.progress-2::part(text) {
-  fill: red;
-}
-
-#map {
-  height: 600px;
-}
-
-/* /template */
 /* popup */
 .popup {
   position: relative;
@@ -7891,6 +7800,127 @@ body.lock {
   border-top-color: red !important;
 }
 
+/* my-btn */
+.my-btn {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  padding: 10px 30px;
+  border-radius: 20px;
+  background-color: blue;
+  color: #fff;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+.my-btn:hover {
+  background-color: lightblue;
+}
+
+/* /my-btn */
+/* template */
+.template-block {
+  padding: 50px 0;
+}
+.template-block .swiper__slider {
+  overflow: hidden;
+  position: relative;
+}
+
+.template-block__title {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.aos {
+  height: 200px;
+  background-color: green;
+}
+
+.autosize {
+  width: 100%;
+  height: 100px;
+  resize: none;
+}
+
+.pagepiling__block {
+  padding: 100px 0;
+}
+.pagepiling__block--1 {
+  background-color: red;
+}
+.pagepiling__block--2 {
+  background-color: green;
+}
+.pagepiling__block--3 {
+  background-color: blue;
+}
+.pagepiling__block--4 {
+  background-color: purple;
+}
+
+.jquery-scrollbar .scrollbar-inner {
+  max-height: 100px;
+}
+.jquery-scrollbar__content {
+  padding-right: 20px;
+}
+
+.progress-1::part(base) {
+  width: 200px;
+  height: auto;
+}
+
+.progress-1::part(circle) {
+  stroke: hsl(39, 100%, 85%);
+  fill: #999;
+}
+
+.progress-1::part(value) {
+  stroke: hsl(39, 100%, 50%);
+}
+
+.progress-1::part(text) {
+  fill: hsl(39, 100%, 50%);
+}
+
+.progress-2::part(base) {
+  width: 200px;
+  height: auto;
+}
+
+.progress-2::part(circle) {
+  stroke-width: 6px;
+  stroke: #999;
+}
+
+.progress-2::part(value) {
+  stroke: green;
+  stroke-dasharray: 4 1;
+}
+
+.progress-2::part(text) {
+  fill: red;
+}
+
+#map {
+  height: 600px;
+}
+
+/* /template */
 /* header */
 .header {
   width: 100%;

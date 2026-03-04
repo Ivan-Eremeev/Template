@@ -5,20 +5,20 @@ header#headerSticky.header.modal-open-for-sticky
       a(href="#").header__logo 
         img(src="img/logo.svg", alt="")
       // menu
-      .menu
+      .menu#mainMenu
         .menu__head 
-          .menu__close 
+          .menu__close#mainMenuClose
         .menu__body 
           nav.menu__nav 
             ul.menu__list 
-              li.menu__item 
+              li.menu__item(data-menu="item")
                 a(href="#").menu__link Пункт1
-              li.menu__item 
+              li.menu__item(data-menu="item")
                 a(href="#").menu__link Пункт2
-              li.menu__item 
+              li.menu__item(data-menu="item")
                 a(href="#").menu__link Пункт3
       // /menu
-      .header__hamburger.hamburger.hamburger--squeeze
+      .header__hamburger.hamburger.hamburger--squeeze#mainMenuBtn
         .hamburger-box 
           .hamburger-inner 
 // /header

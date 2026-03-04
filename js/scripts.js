@@ -1,58 +1,123 @@
 window.onload = function () {
 
   // Липкое меню.
-  function stikyMenu(header) {
-    let headerTop = header.offset().top;
-    headerToggleClass();
-    $(window).scroll(function () {
-      headerToggleClass();
-    });
-    function headerToggleClass() {
-      if ($(window).scrollTop() > headerTop + 200) {
-        header.addClass('sticky');
-      } else if ($(window).scrollTop() <= headerTop) {
-        header.removeClass('sticky');
+  class StickyMenu {
+    constructor(selector, options = {}) {
+
+      // Селекторы
+      this.menu = document.querySelector(selector);
+      this.menuTop = this.menu.offsetTop;
+
+      // Настройки по умолчанию
+      this.options = Object.assign({
+        offset: 200,
+        activeClass: 'sticky'
+      }, options);
+
+      // Вызываем методы
+      this.toggleClass();
+
+      // Ставим слушатели
+      window.addEventListener('scroll', this.toggleClass);
+    }
+
+    // Методы
+    toggleClass = () => {
+      if (window.scrollY > this.menuTop + this.options.offset) {
+        this.addClass();
+      }
+      else if (window.scrollY <= this.menuTop) {
+        this.removeClass();
       }
     }
-  };
-  stikyMenu($('#headerSticky'));
+
+    addClass() {
+      this.menu.classList.add(this.options.activeClass);
+    }
+
+    removeClass() {
+      this.menu.classList.remove(this.options.activeClass);
+    }
+  }
+  const header = new StickyMenu('#headerSticky');
 
   // Мобильное меню
-  function menuMobile() {
-    let btn = $('.header__hamburger'),
-        menu = $('.menu'),
-        close = $('.menu__close'),
-        body = $('body');
-    btn.on('click', function () {
-      let scrollWidth = (window.innerWidth - $(window).width());
-      if (!btn.hasClass('is-active')) {
-        btn.addClass('is-active');
-        menu.addClass('open');
-        body.addClass('lock').css('padding-right', scrollWidth);
-      } else {
-        btn.removeClass('is-active');
-        menu.removeClass('open');
-        body.removeClass('lock').css('padding-right', 0);
-      }
-      $(document).mouseup(function (e) {
-        if (!btn.is(e.target)
-          && btn.has(e.target).length === 0
-          && !menu.is(e.target)
-          && menu.has(e.target).length === 0) {
-          btn.removeClass('is-active');
-          menu.removeClass('open');
-          body.removeClass('lock').css('padding-right', 0);
+  // function menuMobile() {
+  //   let btn = $('.header__hamburger'),
+  //       menu = $('.menu'),
+  //       close = $('.menu__close'),
+  //       body = $('body');
+  //   btn.on('click', function () {
+  //     let scrollWidth = (window.innerWidth - $(window).width());
+  //     if (!btn.hasClass('is-active')) {
+  //       btn.addClass('is-active');
+  //       menu.addClass('open');
+  //       body.addClass('lock').css('padding-right', scrollWidth);
+  //     } else {
+  //       btn.removeClass('is-active');
+  //       menu.removeClass('open');
+  //       body.removeClass('lock').css('padding-right', 0);
+  //     }
+  //     $(document).mouseup(function (e) {
+  //       if (!btn.is(e.target)
+  //         && btn.has(e.target).length === 0
+  //         && !menu.is(e.target)
+  //         && menu.has(e.target).length === 0) {
+  //         btn.removeClass('is-active');
+  //         menu.removeClass('open');
+  //         body.removeClass('lock').css('padding-right', 0);
+  //       }
+  //     });
+  //   })
+  //   close.on('click', function () {
+  //     btn.removeClass('is-active');
+  //     menu.removeClass('open');
+  //     body.removeClass('lock');
+  //     body.css('padding-right', 0);
+  //   })
+  // }
+  // menuMobile();
+
+  class Menu {
+    constructor(menuSelector, humburgerSelector, closeSelector, options = {}) {
+
+      // Селекторы
+      this.menu = document.querySelector(menuSelector);
+      this.humburger = document.querySelector(humburgerSelector);
+      this.closeBtn = document.querySelector(closeSelector);
+      this.items = this.menu.querySelectorAll('[data-menu="item"]');
+
+      // Настройки по умолчанию
+      this.options = Object.assign({
+        activeClass: 'open', // класс для открытия меню
+        animationDelay: 100    // задержка между пунктами (мс)
+      }, options);
+
+      // Привязываем методы
+      this.openMenu = this.openMenu.bind(this);
+      this.closeMenu = this.closeMenu.bind(this);
+
+      // Ставим слушатели
+      this.humburger.addEventListener('click', () => {
+        if (this.menu.classList.contains(this.options.activeClass)) {
+          this.closeMenu();
+        } else {
+          this.openMenu();
         }
       });
-    })
-    close.on('click', function () {
-      btn.removeClass('is-active');
-      menu.removeClass('open');
-      body.removeClass('lock');
-      body.css('padding-right', 0);
-    })
+      
+      this.closeBtn.addEventListener('click', this.closeMenu);
+    }
+    // Методы
+    openMenu() {
+      this.menu.classList.add(this.options.activeClass);
+    }
+
+    closeMenu() {
+      this.menu.classList.remove(this.options.activeClass);
+    }
   }
-  menuMobile();
+  const mainMenu = new Menu('#mainMenu', '#mainMenuBtn', '#mainMenuClose');
 
   // Выпадайки при клике по кнопке
   // Задать блокам выпадайкам айдишник совпадающий с data-drop="" в кнопке для этого блока
@@ -581,5 +646,13 @@ window.onload = function () {
         .add(myPlacemarkWithContent);
     });
   }
+
+  // Choices || Кастомизируемый селект
+  const selects = document.querySelectorAll('.js-choices');
+  selects.forEach(select => {
+    new Choices(select, {
+      searchEnabled: false,
+    });
+  });
 
 }
